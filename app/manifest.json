@@ -1,0 +1,32 @@
+{
+    "name": "OverTask",
+    "version": "1.0.0.0",
+    "manifest_version": 2,
+    "description": "Manage your information by tasks!",
+    "icons": {
+        "16": "images/overtask-appicon.png",
+        "128": "images/overtask-appicon.png"
+    },
+    "content_security_policy": "img-src chrome-extension://mhgjbfibpjgbfbnmmaeicjeojefefjke/ http://g.etfv.co/ http://www.gravatar.com/ http://www.google-analytics.com/; script-src 'self'  https://ssl.google-analytics.com https://s7.addthis.com; object-src 'self'",
+    "default_locale": "en",
+
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  },
+  "background": {
+    "scripts": ["bower_components/pouchdb/dist/pouchdb.min.js","scripts/background.js"],
+    "persistent": true
+  },
+  "permissions":["management","http://www.gravatar.com/*","https://apis.google.com/*","http://*/*","https://*/*","https://overtaskme.appspot.com/*","http://127.0.0.1:8000/*","https://overtask.cloudant.com/*", "storage","https://www.googleapis.com/*","webNavigation","tabs","https://www.google.com/m8/feeds/contacts/default/full/", "storage"],
+  "oauth2": {
+    "client_id": "474430860380.apps.googleusercontent.com",
+    "scopes": [
+      "https://docs.google.com/feeds/",
+      "https://docs.googleusercontent.com/",
+      "https://spreadsheets.google.com/feeds/",
+      "https://www.googleapis.com/auth/drive.file",
+      "https://www.google.com/m8/feeds/"
+    ]
+  }
+}
+

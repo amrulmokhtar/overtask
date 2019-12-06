@@ -1,0 +1,30 @@
+<div id="socialshare" class="collapse in">
+    <h3>Let others know you're busy!</h3>
+    <textarea class="form-control">I'm currently working on {{task.name}} using OverTask! http://overtask.me</textarea>
+
+	<!-- <a class="btn btn-success sharebtn">Share</a> -->
+
+	<div class="sharebtnbox">
+		<!--<div  ng-hide='chooseshare' ng-click='chooseshare = true' class="sharebtn">Share</div>-->
+		<div class="socialbtnbox">
+			<a class="socialbtn"><img src="images/gplus.png" /></a>
+		    <a class="socialbtn"><img src="images/twitter.png" /></a>
+		    <a class="socialbtn"><img src="images/facebook.png" /></a>
+		</div>
+	</div>
+
+	<h3>Share with Other OverTask Users</h3>
+	<input type='text' ng-model="shareemail" placeholder="Enter User's Email Here">
+	<button ng-click='share(task,shareemail)'>Share</button>
+	<h3>Currently Shared with:</h3>
+	<ul>
+	<li ng-show='user' ng-repeat="person in task.shared track by $index">{{person}}</li>
+	</ul>
+	<!--
+    <a href="#" class="socialbtn"><img src="images/share-gplus.png" /></a>
+    <a href="#" class="socialbtn"><img src="images/share-twitter.png" /></a>
+    <a href="#" class="socialbtn"><img src="images/share-facebook.png" /></a>
+-->
+
+    <div class="clear"></div>
+</div>

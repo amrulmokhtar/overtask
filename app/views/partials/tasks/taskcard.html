@@ -1,0 +1,70 @@
+<div  id="taskbtnbox{{$index}}" collapse='!isCollapsed' class="taskbtnbox">
+    <a ng-disabled='currentlyopen(task)' class="btn btn-default" ng-click="openEdit(); isCollapsed=false;showoptions = !showoptions"><img src="../images/icons/edit.png"></a>
+    <a ng-disabled='currentlyopen(task)' class="btn btn-default" ng-click="trashTask(task); isCollapsed=false;showoptions = !showoptions"><img src="../images/icons/trash.png"></a>
+</div>
+
+<div class="cont" ng-class="{contdown: showoptions}">
+<a ng-hide="task.trashed || currentlyopen(task)" ng-disabled='currentlyopen(task)' class="drop" ng-click="isCollapsed = !isCollapsed; showoptions = !showoptions" ng-class="{up: showoptions}"><img src="images/icons/downcaret.png" /></a>
+</div>
+
+
+<div class="padd">
+  <h3>{{task.name}}</h3>
+  <p ng-show='currentlyopen(task)'>Task is currently open in another window<!--Open in Window {{task.windowid}}--></p>
+</div>
+
+<ul class="collaboratelist" ng-show="task.shares.length>0">
+    <li ng-repeat="user in task.shares | limitTo: 2" tooltip="{{user}}" tooltip-placement="bottom"><img ng-src="http://www.gravatar.com/avatar/{{md5(user)}}?"></li>
+    <li ng-hide='task.shares.length < 4' class="more"><span class="number">{{task.shares.length - 2}}</span> more</li>
+</ul>
+<!-- for publicly shared tasks -->
+<ul class="collaboratelist" ng-show="task.sharestatus=='link'">
+    <li tooltip="Publicly shared task" tooltip-placement="bottom"><img src="../images/icons/link.png" /></li>
+</ul>
+
+
+<div class="clearfix"></div>
+
+
+<div class="details i-category-dark">
+    <p>{{task.category}}</p>
+</div>
+
+<div class="details i-calendar-dark" ng-class="{overdue:isoverdue(task)}">
+    <p ng-show="hasdate(task.duedate)">{{renderdate(task.duedate)|date:'mediumDate'}}</p>
+    <p ng-hide="hasdate(task.duedate)">None</p>
+</div>
+
+<!--
+<div ng-hide="!hasdate(task.scheduleddate) && hasdate(task.duedate)" class="details i-calendar-dark">
+    <p ng-show="hasdate(task.scheduleddate)">{{renderdate(task.scheduleddate)|date:'mediumDate'}}</p>
+    <p ng-hide="hasdate(task.scheduleddate)">None</p>
+</div>
+
+<div ng-show="!hasdate(task.scheduleddate) && hasdate(task.duedate)" class="details i-hourglass-dark">
+    <p ng-show="hasdate(task.duedate)">{{renderdate(task.duedate)|date:'mediumDate'}}</p>
+    <p ng-hide="hasdate(task.duedate)">None</p>
+</div>
+-->
+
+<div class="details i-priority-dark">
+    <p>{{prioritylabels[''+task.priority]}}</p>
+</div>
+
+<a ng-click="isCollapsed=false;;trashTask(task)" ng-hide="task.status=='inprogress'" class="btn btn-delete btn-primary btn-lg2 i-trash">Delete</a>
+<!-- to be added
+<a ng-click="isCollapsed=false;;openEdit()" ng-hide="task.status=='inprogress'" class="btn btn-primary btn-lg3 i-edit-light">Edit</a>-->
+<a ng-click="isCollapsed=false;reDoTask(task)"  ng-hide="task.status=='inprogress'" class="btn btn-success btn-lg2 i-redo">Redo</a>
+
+<div ng-show="task.status=='inprogress'">
+
+    <a  ng-hide="task.trashed" class="btn btn-primary btn-lg3 i-addtabs" ng-disabled='currentlyopen(task)' ng-click="isCollapsed=false; getTabs(); openTabAdder()" tooltip="Add Tabs to Task" tooltip-placement="bottom">Add Tabs</a>
+
+    <a ng-click="isCollapsed=false;finishTask(task)" ng-disabled='currentlyopen(task)' ng-hide="task.trashed" class="btn btn-primary btn-lg3 i-done" tooltip="Complete Task" tooltip-placement="bottom">Done</a>
+    <a ng-hide="task.trashed" ng-disabled='disabled'  ng-click="isCollapsed=false;disabled=true;launchTask(task)" class="btn btn-success btn-lg3" tooltip="Do Task" tooltip-placement="bottom">DO</a>
+</div>
+
+<div ng-show="task.status =='inprogress'">
+    <a ng-click="isCollapsed=false;trashTask(task)"  ng-show="task.trashed" class="btn btn-delete btn-primary btn-lg2 i-trash">Delete</a>
+    <a ng-click="isCollapsed=false;reDoTask(task)" ng-show="task.trashed" class="btn btn-success btn-lg2 i-redo">Redo</a>
+</div>

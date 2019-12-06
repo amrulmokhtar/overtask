@@ -1,0 +1,34 @@
+
+
+<div class="padd">
+  <h3>{{task.name}}</h3>
+  <p ng-show='currentlyopen(task)'>Open in Window {{task.windowid}}</p>
+</div>
+
+<ul class="collaboratelist" ng-show="task.shares.length>0">
+    <!-- profile icon of the owner of the task -->
+    <li tooltip="taskownername" tooltip-placement="bottom"><img src="#"></li>
+    <!--<li ng-repeat="user in task.shares | limitTo: 2" tooltip="{{user}}" tooltip-placement="bottom"><img ng-src="http://www.gravatar.com/avatar/{{CryptoJS.md5(user).toString()}}?"></li>
+    <li ng-hide='task.shares.length < 4' class="more"><span class="number">{{task.shares.length - 2}}</span> more</li>-->
+</ul>
+<div class="clearfix"></div>
+
+
+<div class="details i-category-dark">
+    <p>{{task.category}}</p>
+</div>
+
+<div class="details i-calendar-dark" ng-class="{overdue:isoverdue(task)}">
+    <p ng-show="hasdate(task.duedate)">{{renderdate(task.duedate)|date:'mediumDate'}}</p>
+    <p ng-hide="hasdate(task.duedate)">None</p>
+</div>
+
+<div class="details i-priority-dark">
+    <p>{{prioritylabels[''+task.priority]}}</p>
+</div>
+
+
+<div>
+    <a class="btn btn-primary btn-lg2 i-copy">Copy</a>
+    <a class="btn btn-success btn-lg2">View</a>
+</div>

@@ -1,0 +1,22 @@
+<nav id="nav">
+    <a analytics-on="click" analytics-event="suspendtask" ng-show="currenttask" class="btnback" ng-click="suspendTask(currenttask)"><img
+            src="images/icons/back-purple.png"/></a>
+    <img src="images/overtasklogo-beta.png" class="logo" ng-hide="currenttask" />
+    <!-- 
+	<button ng-hide="debugstate" ng-click="toggledebug(false)">Turn Debug Off</button>
+	<button ng-show="debugstate" ng-click="toggledebug(true)">Toggle Debug On</button>
+	Tracking at {{debugstate}}
+	Server at {{server}} -->
+    <div ng-show="notifications.length > 0" class="notificationblock" style="display: block;">
+        <div class="notification notificationundo">
+            <img analytics-on="click" analytics-event="removenotification" class="remove" ng-click="removenotification()" src="../images/icons/close.png" /><p class="notiftext">{{notifications[notifications.length-1].description}}</p> | <a ng-show="notifications[notifications.length-1].type=='undo'" ng-click="undo()">Undo</a> <!--| You still have {{notifications[notifications.length-1].upseconds}}s left-->
+        </div>
+    </div>
+
+    <a ng-hide="user" class="btn btn-info pull-right userbtn" ng-class="{showarrow:showarrow}" ng-click="openlogin();showarrow=!showarrow">Sign In</a>
+    <a ng-show="user"  class="rightbtn pull-right userbtn" ng-class="{showarrow:showarrow}" ng-click='openlogin();showarrow=!showarrow'><img src="images/userphotoplaceholder-green.png" class="userphoto right"/></a>
+    <a analytics-on="click" analytics-event="openapps" class="rightbtn pull-right" ng-click="openapps()"><img src="images/icons/chrome-dark.png" id="chromeapps" class="chromeapps"/></a>
+
+</nav>
+
+<!--<a class="remove" ng-click="removenotification()">-->

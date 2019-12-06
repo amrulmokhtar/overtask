@@ -1,0 +1,457 @@
+
+@import "overtaskskin.less";
+
+// Main block
+#main{
+	position: absolute;
+	top: 50px;
+	left: 22%;
+	height:auto;
+	width: 76%;
+	padding: 30px 0.3%;
+	float: left;
+	
+	.search{
+		width: 35%;
+		float: left;
+	}
+	
+	select{
+		float: left;
+		margin: 10px;
+	}
+	
+	.btncollapse{
+		margin: 10px 5px;
+		float: right;
+	}
+
+	.tasktabheader{
+		margin: -10px 10px 10px 0;
+
+		.btn{
+			margin: -7px 0 0 0;
+		}
+
+		h3{
+			display: inline-block;
+			padding: 0;
+			margin: 0;
+			font-size: 14pt;
+		}
+	}
+}
+
+// Tab page - current tab
+#currenttabs{
+	width: 62%;
+	margin: 0 2% 2% 0;
+	background: transparent;
+	float: left;
+}
+
+.droparrow{
+	width: 20px;
+	height: 15px;
+	position: absolute;
+	-webkit-transition: all 1s ease;
+
+	top: 10px;
+	right: 10px;
+
+	/*&.up{
+		-webkit-transform:rotate(180deg);
+		-webkit-transition: all 1s ease;
+	}*/
+}
+
+.optionsbox{
+	background: #f6f6f6;
+	float: right;
+	width: 100%;
+
+	a.btn{
+		float: right;
+		width: 50px;
+		height: 50px;
+
+		&.i-comment, &.i-close{
+			background-size: 25px 25px;
+		}
+	}
+}
+
+#addtags{
+	display: inline;
+	background: #f6f6f6;
+}
+
+/*
+.dropdownbox{
+	position: absolute;
+	top: 0;
+	right: 0;//-200px;
+	z-index: 4;	
+	min-width: 150px;
+	border: 1px solid #ccc;
+	visibility: visible; //hidden;
+	height: auto; //0;
+	margin: 0;
+	padding: 0;
+	
+	.btn{
+		//margin: 5px;
+		padding: 20px;
+		width: 65px;
+		height: 65px;
+	}
+
+	&.boxshow{
+		right: 0;
+		visibility: visible;
+		height: auto;
+		-webkit-transition: right 0.5s ease-in-out, height 0.5s ease-in-out, visibility 0.5s ease-in-out;
+	}
+
+	&.boxhide{
+		right: -200px;
+		visibility: hidden;
+		height: 0;
+		-webkit-transition: right 0.5s ease-in-out, height 0.5s ease-in-out, visibility 0.5s ease-in-out;
+	}
+}
+*/
+
+ul#tags{
+	margin: 0;
+	padding: 10px;
+
+	li{
+		display: inline;
+		list-style: none;
+		float: none;	
+		
+		border: 1px solid #666;
+		font-size: 10pt;
+		.radius(3px);
+		padding: 3px;
+		margin: 0 3px 0 0;
+
+		a{
+			color: #666;
+			cursor: default;
+		}
+
+		&.do{
+			border: 1px solid #e67e22;
+			a{
+				color: #e67e22;
+			}
+		}
+		&.research{
+			border: 1px solid @overtaskblue;
+			a{
+				color: @overtaskblue;
+			}
+		}
+		&.communicate{
+			border: 1px solid @purple;
+			a{
+				color: @purple;
+			}
+		}
+		&.comments{
+			border: 1px solid #1abc9c;
+			a{
+				color: #1abc9c;
+				cursor: pointer;
+			}
+			&:hover{
+				background: #1abc9c;
+				a{
+					color: @white;
+				}
+			}
+		}
+		&.add{
+			display: none;
+	
+			input.tag{
+				width: auto;
+				display: inline;
+				color: #666;
+				display: none;
+			}
+			a{
+				display: inline-block;
+				background: #666;
+				margin: -3px;
+				padding: 2px 5px;
+
+				img{
+					width: 12px;
+					height: 12px;
+					margin-top: -3px;
+				}
+				&:hover{
+					background: #333;
+				}
+			}
+
+		}
+
+	}
+}
+
+
+// Tab page - suggested, recently closed.
+#suggested, #recentlyclosed{
+	display: inline-block;
+	width: 100%;
+	background: transparent;
+	margin-bottom: 20px;
+	
+}
+
+#currenttabs, #suggested, #recentlyclosed{
+	position: relative;
+
+	img.headericon{
+		margin: 2px 5px 2px 2px;
+		width: 30px;
+		float: left;
+	}
+
+	h4{
+		color: @overtaskblue;
+		text-transform: uppercase;
+		padding: 0 2% 10px 2%;
+		margin: 10px 0 0 0;
+		font-size: 11pt;
+		//border-bottom: 1px solid #eaeaea;
+		display: block;
+	}
+}
+
+// tab page - right sidebar for suggested and closed
+#rightbar{
+	width: 34%;
+	float: left;
+	margin: 0 1%;
+	overflow: hidden;
+}
+
+
+
+
+// add tabs to task
+
+
+
+h3.modaltext{
+	font-size: 12pt;
+	line-height: 36px;
+}
+
+#addtabscontainer{
+	background: #eee;
+	border: 1px dashed #ccc;
+	width: 100%;
+	padding: 20px;
+
+	&.nocontainer{
+		background: transparent;
+		border: 0;
+		padding: 0;
+	}
+
+	img.favicon{
+		float: left;
+		margin: 2px 5px 0 0;
+		width: 15px;
+		height: 15px;
+	}
+	
+	.collapsibleheader{
+		float: left;
+		width: 100%;
+		background: #e2e2e2;
+		padding: 3px 10px;
+		margin: 20px 0 10px;
+
+		h3{
+			float: left;
+			font-weight: 300;
+			color: @overtaskblue;
+			font-size: 12pt;
+			padding: 5px;
+		}
+
+		.drop{
+			margin: 0;
+		}
+	}
+
+
+}
+
+.addtabs{
+	background: @overtaskblue;
+	color: @white;
+	padding: 7px;
+	display: inline-block;
+	margin: 0 5px 5px 0;
+	position: relative;
+	cursor: pointer;
+	max-width: 95%;
+
+	p{
+		max-width: 100%;
+		.overflows;
+	}
+	
+	&.tabdisabled{
+		background: #aaa;
+		color: #fff;
+		cursor:default;
+	}
+}
+
+.tabselected{
+	&.addtabs{
+		margin-right: 40px;
+
+		&:after{
+			content: "";
+			position: absolute;
+			top: 0;
+			right: -33px;
+			background-color: @green;
+			background-image: url('../images/icons/done.png');
+			background-repeat: no-repeat;
+			background-size: 25px 25px;
+			background-position: 5px 5px;
+			width: 33px;
+			height: 34px;
+		}
+	}
+
+	&.btn{
+		&.addtabs{
+			&:after{
+				right: -30px;
+				height: 30px;
+				width: 30px;
+				background-position: 3px 3px;
+			}
+		}
+	}
+}
+
+// search box in tab list 
+a.btnsearch{
+	position: absolute;
+	top: 0;
+	right: 0;
+	text-indent: -9999px;
+	width: 36px;
+	height: 36px;
+	background-color: transparent;
+	background-image: url("../images/icons/search-green.png");
+	background-size: 28px 28px;
+	background-repeat: no-repeat;
+	background-position: 5px 5px;
+	-webkit-transition: 1s all ease;
+
+	img{
+		width: 32px;
+		height: 32px;
+	}
+
+	&.btntips{
+		opacity: 1;
+		background-color: transparent;
+		background-image: url("../images/icons/tips.png");
+	}
+
+	&.close{
+		opacity: 1;
+		background-color: #1abc9c;
+		background-image: url("../images/icons/upcaret-white.png");
+		background-size: 28px 25px;
+		background-repeat: no-repeat;
+		background-position: 5px 5px;
+		-webkit-transition: 1s all ease;
+	}
+
+}
+
+.searchblock{
+	background: #1abc9c;
+	padding: 10px;
+
+	input{
+		width: 100%;
+		margin: 0 auto;
+	}
+}
+
+.notice{
+	background: #1abc9c;
+	box-sizing: border-box;
+	padding: 10px;
+	width: 100%;
+	text-align: center;
+
+	a{
+		text-decoration: none;
+		color: @white;
+		font-style: italic;
+	}
+
+
+}
+
+
+// popover
+
+.popover{
+	max-width: auto;
+	width: 100px;
+	padding: 0;
+
+	.popover-content{
+		padding: 0;
+	}
+}
+
+ul#popover{
+	margin: 0;
+	padding: 0;
+
+	li{
+		display: block;
+		list-style: none;
+		border-bottom: 1px solid #eee;
+		padding: 10px;
+		text-align: center;
+
+		a{
+			text-decoration: none;
+			color: #444;
+			cursor: pointer;
+		}
+
+		&:last-child{
+			border: 0;
+		}
+
+		&:hover{
+			background: #eee;
+
+			a{
+				color: @overtaskblue;
+			}
+		}
+	}
+}

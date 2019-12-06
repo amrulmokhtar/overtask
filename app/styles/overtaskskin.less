@@ -1,0 +1,428 @@
+
+@overtaskblue: #3498db;
+@green: #12B247;
+@purple: #9b59b6;
+@yellow: #f39c12;
+@red: #C60909;
+@white: #fff;
+@black: #000;
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/Lato-Reg.ttf');
+}
+
+.clear{
+	clear: both;
+}
+
+// mixins
+
+.radius(@rad){
+	border-radius: @rad;
+	-webkit-border-radius: @rad;
+	-moz-border-radius: @rad;
+}
+
+.overflows{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+
+// buttons and labels
+
+.btn{
+	.radius(0px);
+	border: 0;
+	text-shadow: none;
+	background-image: none;
+	background-color: #D9D9D9;
+
+}
+
+.btn-default{
+	background-color: #D9D9D9;
+
+	&:hover{
+		background-color: #ccc;
+	}
+}
+
+.label{
+	border: 0;
+	.radius(0px);
+}
+
+.btn-primary, .label-primary{
+	background-color: @overtaskblue;
+}
+
+.btn-success, .label-success{
+	background-color: @green;
+}
+
+.btn-info, .label-info{
+	background-color: @purple;
+}
+
+.btn-info:hover, .btn-info:focus{
+		background-color: #8e44ad;
+	}
+
+.btn-warning, .label-warning{
+	background-color: @yellow;
+}
+
+.btn-danger, .label-danger{
+	background-color: @red;
+}
+
+.btn-inverse{
+	background-color: #666;
+}
+
+.btn-delete{
+	background-color: #2980b9;
+	
+	&:hover{
+		background-color: #3276b1;
+	}
+}
+
+.label-inverse{
+	color: @overtaskblue;
+	font-weight: normal;
+	font-style: italic;
+	padding: 0;
+	margin: 0 10px 0 0;
+	font-size: 10pt;
+}
+
+.badge{
+	background-color: #d9d9d9;
+	color: #888;
+}
+
+.btn{
+	padding: 2px;
+	img{
+		width: 30px;
+	}
+	
+	span.badge{
+		margin: 3px;
+		padding: 7px 8px;
+	}
+}
+
+.btn-lg2, .btn-lg3{
+	width: 50%;
+	padding: 10px;
+	margin-left: -1px;
+	margin-right: -2px;
+
+	img{
+		width: 40px;
+		margin: -10px 0;
+	}
+}
+
+.btn-lg3{
+	width: 33.33%;
+}
+
+.btn-lg4{
+	width: 60px;
+}
+
+// icons
+
+
+.i-add, .i-back, .i-close, .i-comment, .i-done, .i-edit, .i-edit-light, .i-redo, .i-trash, .i-view, .i-category, .i-calendar, .i-priority, .i-hourglass, .i-category-dark, .i-calendar-dark, .i-priority-dark, .i-hourglass-dark, .i-copy{
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+	background-position: center;
+	text-indent: -9999px;
+}
+
+.i-addtabs{
+	background-size: 40px auto;
+	background-repeat: no-repeat;
+	background-position: center;
+	text-indent: -9999px;
+}
+
+.i-add{
+	background-image: url("../images/icons/add.png");
+}
+
+.i-back{
+	background-image: url("../images/icons/back.png");
+}
+
+.i-close{
+	background-image: url("../images/icons/close.png");
+}
+
+.i-comment{
+	background-image: url("../images/icons/comment.png");
+}
+
+.i-copy{
+	background-image: url("../images/icons/copy.png");
+}
+
+.i-done{
+	background-image: url("../images/icons/done.png");
+}
+
+.i-edit-light{
+	background-image: url("../images/icons/edit.png");
+}
+
+.i-edit{
+	background-image: url("../images/icons/edit-dark.png");
+}
+
+.i-redo{
+	background-image: url("../images/icons/redo.png");
+}
+
+.i-trash{
+	background-image: url("../images/icons/trash.png");
+}
+
+.i-view{
+	background-image: url("../images/icons/view.png");
+}
+
+.i-category{
+	background-image: url("../images/icons/category.png");
+}
+
+.i-calendar{
+	background-image: url("../images/icons/calendar.png");
+}
+
+.i-priority{
+	background-image: url("../images/icons/priority.png");
+}
+
+.i-hourglass{
+	background-image: url("../images/icons/hourglass.png");
+}
+
+.i-category-dark{
+	background-image: url("../images/icons/category-dark.png");
+}
+
+.i-calendar-dark{
+	background-image: url("../images/icons/calendar-dark.png");
+}
+
+.i-priority-dark{
+	background-image: url("../images/icons/priority-dark.png");
+}
+
+.i-hourglass-dark{
+	background-image: url("../images/icons/hourglass-dark.png");
+}
+
+.i-addtabs{
+	background-image: url("../images/icons/addtabs.png");
+}
+
+
+// forms
+
+.form-control{
+	.radius(0px);
+	margin: 10px 0;
+	//border: 0;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+
+	&:focus{
+		-webkit-box-shadow: none;
+		border: 1px solid @green;
+	}
+}
+
+textarea:focus{
+	-webkit-box-shadow: none;
+		border: 1px solid @green;
+}
+
+input{
+	border: 0;
+}
+/*
+input[type="checkbox"], input[type="radio"]{
+	//display: none;
+}
+
+input[type="checkbox"] + label span{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	background: url("../images/icons/checkbox.png") left top no-repeat;
+	margin: 0px 7px 0 -55px;
+}
+
+input[type="checkbox"]:checked + label span{
+	background: url("../images/icons/checkbox.png") -21px top no-repeat;
+}
+
+input[type="radio"] + label span{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	margin: 0 -15px;
+}
+
+input[type="radio"] + label.cp0 span{
+	background: url("../images/checkboxpriority30.png") left top no-repeat;
+}
+
+input[type="radio"]:checked + label.cp0 span{
+	background: url("../images/checkboxpriority30.png") -30px top no-repeat;
+}
+
+input[type="radio"] + label.cp1 span{
+	background: url("../images/checkboxpriority30.png") -61px top no-repeat;
+}
+
+input[type="radio"]:checked + label.cp1 span{
+	background: url("../images/checkboxpriority30.png") -91px top no-repeat;
+}
+
+input[type="radio"] + label.cp2 span{
+	background: url("../images/checkboxpriority30.png") -122px top no-repeat;
+}
+
+input[type="radio"]:checked + label.cp2 span{
+	background: url("../images/checkboxpriority30.png") -152px top no-repeat;
+}
+
+input[type="radio"] + label.cp3 span{
+	background: url("../images/checkboxpriority30.png") -183px top no-repeat;
+}
+
+input[type="radio"]:checked + label.cp3 span{
+	background: url("../images/checkboxpriority30.png") -213px top no-repeat;
+}
+*/
+
+select{
+	-webkit-appearance: none;
+	background: @overtaskblue;
+	border: 0;
+	.radius(0px);
+	padding: 7px;
+	color: @white;
+}
+
+// text
+
+h1, h2, h3, p{
+	margin: 0;
+}
+
+
+// override bootstrap-select styles 
+
+.btn-group > .btn:first-child{
+	margin-left: 10px;
+}
+
+.bootstrap-select{
+	.btn{
+		padding: 8px;
+		margin: 10px 0 0 10px;
+		width: 150px;
+
+		&:hover, &:focus, &:active{
+			background: @overtaskblue;
+		}
+	}
+}
+
+
+// modal
+
+.modal-dialog{
+	width: 700px;
+	padding-top: 70px;
+}
+
+.modal-content{
+	.radius(0px);
+
+	.modal-header{
+		//background: #ccc;
+		color: #444;
+
+		.close{
+			opacity: 1;
+		}
+
+		img.favicon{
+			float: left;
+			margin: 0 10px 0 0;
+		}
+
+		img.modalicon{
+			width: 30px;
+			height: 30px;
+			margin: -15px 5px 0 0;
+			display: inline;
+		}
+
+		h4{
+			//float: left;
+			font-weight: 300;
+			width: 90%;
+			.overflows;
+			display: inline-block;
+
+			span{
+				color: @overtaskblue;
+			}
+		}
+
+		
+
+
+	}
+
+	.modal-body{
+		padding: 10px 20px;
+
+
+		p.modaltext{
+			color: @overtaskblue;
+			font-weight: 700;
+			font-size: 11pt;
+		}
+
+		.checkbox{
+			float: left;
+			margin: 10px 20px;
+		}
+	}
+
+	.modal-footer{
+		padding: 10px 20px;
+		text-align: center;
+		.btn{
+			padding: 8px;
+			min-width: 100px;	
+		}
+	}
+}

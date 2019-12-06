@@ -1,0 +1,23 @@
+<div class="filterbox">
+     <input ng-model="tasksearch" class="form-control search" type="text" placeholder="Search tasks..." />    
+
+     <ul class="filter">
+        <li ng-class="{active:filterset == filtertypes[0]}"><a ng-click="setFilter(0);trackFilter('All Tasks')">All Tasks<span class="badge">{{(tasks|filter:filtertypes[0].filter).length}}</span></a></li>
+        <li ng-class="{active:filterset == filtertypes[4]}"><a ng-click="setFilter(4);trackFilter('Today')">Today<span class="badge">{{(tasks|filter:filtertypes[4].filter).length}}</span></a></li>
+        <li ng-class="{active:filterset == filtertypes[5]}"><a ng-click="setFilter(5);trackFilter('Tomorrow')">Tomorrow<span class="badge">{{(tasks|filter:filtertypes[5].filter).length}}</span></a></li>
+        <li ng-class="{active:filterset == filtertypes[12]}"><a ng-click="setFilter(12);trackFilter('This Week')">This Week<span class="badge">{{(tasks|filter:filtertypes[12].filter).length}}</span></a></li>
+        
+        <!-- To do: Wire up shared with me filter 
+        <li ng-class="{active:filterset == filtertypes[14]}"><a ng-click="setFilter(14);trackFilter('Shared With Me')">Shared With Me<span class="badge">{{(tasks|filter:filtertypes[14].filter).length}}</span></a></li>-->
+
+        <li ng-class="{donetrash:true, active:filterset == filtertypes[10]}"><a ng-click="setFilter(10);trackFilter('Completed')">Completed<span class="badge">{{(tasks|filter:filtertypes[10].filter).length}}</span></a></li>
+        <li ng-class="{donetrash:true, active:filterset == filtertypes[11]}"><a ng-click="setFilter(11);trackFilter('Trashed')">Trashed<span class="badge">{{(tasks|filter:filtertypes[11].filter|filter:notdeleting).length}}</span></a>
+        <a ng-click='cleanTrash()' class="emptytrash" tooltip="Empty Trash" tooltip-placement="left"><img src="../images/icons/trash-dark.png" /></a>
+        </li>
+     </ul>
+     <div class="sort">
+        <p>Sort Tasks: </p>
+        <select ng-change='trackSort()'  ng-model="orderby" ng-options="sort.orderby as sort.name for sort in sorts" class="selectpicker show-tick">
+
+         </select>
+    </div>

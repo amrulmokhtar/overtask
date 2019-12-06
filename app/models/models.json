@@ -1,0 +1,41 @@
+[{
+	"task":{
+		"name" : "string",
+		"link" : "string",
+		"image" : {"category":"to measure apropriateness","url":"url fetched using chrome"},
+		"owner" : "email",
+		"category" : "string",
+		"shared" : ["array","of","emails"],
+		"tabs" : ["array","of","tabs"],
+		"trashed" : "Boolean",
+		"opentimes" : [{"timeopened":time,"timeclosed":timeclosed}],
+		"sessionnum" : "num linked to opentimes",
+		"startdate" : "autogen on create",
+		"enddate" : "optional",
+		"priority": "high(3)/med(2)/low(1), mandatory"
+		"status": "inprogress/done"
+	},
+	"tab":{
+	    "category" : "do/research/communicate",
+	    "id" : "chrome id of tab",
+	    "image" : "url fetched using chrome",
+	    "closed" : "boolean",
+	    "title" : "String",
+	    "url" : "Unique URL",
+	    "opentimes" : [{"timeopened":time,"timeclosed":timeclosed}],
+	    "sessionnum" : "num linked to opentimes",
+	    "priority": "high(3)/med(2)/low(1)"
+	    "label": "used for subfolders in category"
+	}
+},
+{
+	"suggestions":[
+	{
+		"category" : "do/research/communicate",
+		"url" : "Unique URL",
+		"title" : "String",
+		"keywords" : ["array","of","task","categories"],
+		"relevance" : {"keyword" : 1}
+	}
+	]
+}]

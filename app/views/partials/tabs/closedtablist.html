@@ -1,0 +1,41 @@
+<div id="recentlyclosed" ng-hide="task.tabs==0" ng-show="task.tabs!=0 ">
+    <img src="images/icons/recentlyclosed.png" class="headericon" /><h4>Recent Sites</h4>
+
+    <a class="btn btnsearch" ng-click="showrecentsitessearch=!showrecentsitessearch;hiderecentsitesearch=!hiderecentsitesearch" ng-class="{close:hiderecentsitesearch}" ng-hide="(task.tabs|filter:{closed:true}).length==0">Search</a>
+
+    <div class="emptydata" ng-hide="(task.tabs| filter:{closed:true}).length !=0 ">
+        <img src="images/emptydata/norecentsites.png"  />
+     </div>
+
+     <div collapse="!showrecentsitessearch" class="searchblock">
+    	<input ng-model="searchrecentsites" type="text" class="form-control" placeholder="Search tabs . . ." />
+    </div>
+    <ul class="listblock">
+
+        <li ng-repeat="tab in task.tabs| filter:searchrecentsites | filter:{closed:true} | orderBy:timeclosed | limitTo: closedtablimit track by $index ">
+        <a ng-click="reopenTab(tab)">
+        <div class="pull-left sm">
+		        <img ng-src="http://g.etfv.co/{{tab.url}}" class="favicon" />
+		        <h3>{{tab.title|| tab.url}}</h3>
+		        <!--
+		        <span class="label label-inverse">{{tab.category}}, {{tab.comments.length}} Comments</span>-->
+		         <ul id="tags">
+		        	<li class="comments"><a ng-click="openCommentModal(tab); " >{{tab.comments.length}} Comments</a></li>
+		        	<li class="{{tab.category}}"><a>{{tab.category}}</a></li>
+		        </ul>
+		    </div> 
+
+			<a ng-click="isCollapsed = !isCollapsed; closedtabarrow=!closedtabarrow"><img class="droparrow" ng-class="{up:closedtabarrow}" src="../images/icons/downcaret.png" /></a>
+
+		    <div class="clear"></div>
+		    <div collapse='!isCollapsed' class="optionsbox">
+		         <a class="btn btn-primary pull-right i-comment" ng-click='openCommentModal(tab); isCollapsed = !isCollapsed; closedtabarrow=!closedtabarrow'>Comment</a> 
+		    	<a class="btn pull-right i-trash" ng-click="removeTab(tab,task.tabs); isCollapsed = !isCollapsed; closedtabarrow=!closedtabarrow">Close</a>
+		    </div>
+    	</a>
+		</li>
+
+
+    </ul>  
+    <a ng-show='(task.tabs|filter:{closed:true}).length>10 && closedtablimit<(task.tabs|filter:{closed:true}).length' ng-click="closedtablimit=closedtablimit+10" class="btn btn-lg2 btn-primary btnloadmore">Load More</a>                 
+</div>

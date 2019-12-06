@@ -1,0 +1,71 @@
+<div id="shareTaskModal">
+     <div class="modal-content">
+         <div class="modal-header">
+             <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+             <img class="modalicon" src="../images/icons/collaborate-blue.png" />
+             <h4 class="modal-title" id="shareTaskModalLabel">Share <span>{{task.name}}</span></h4>
+             <div class="clear"></div>
+         </div>
+         <div class="modal-body">
+
+            <form>
+
+            <p class="modaltext">What's being shared</p>
+        
+            <div class="checkbox">
+                <input ng-model='currenttabs' type="checkbox" name="shareitems" value="currenttabs" checked><label><span></span>Current Tabs</label>
+            </div>
+            <div class="checkbox">
+                <input ng-model='recentsites' type="checkbox" name="shareitems" value="recentsites"><label><span></span>Recent Sites</label>
+            </div>
+            <div class="checkbox">
+                <input ng-model='comments' type="checkbox" name="shareitems" value="comments"><label><span></span>Comments</label>
+            </div>
+            <div class="clear"></div>
+
+            <p class="modaltext">Who has access</p>
+
+            <form>
+            <div class="access">
+                <input ng-model='task.sharestatus' type="radio" name="shareby" value='private'>
+                <img class="shareby" src="../images/icons/noone.png" />
+                <div class="side">
+                    <h4>No One</h4>
+                    <p>This is a private task only visible by you.</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="access">
+                <input ng-model='task.sharestatus'  type="radio" name="shareby" value='link'>
+                <img class="shareby" src="../images/icons/link.png" />
+                <div class="side">
+                    <h4>Anyone with link</h4>
+                    <input type="text" class="form-control" value="{{server}}/sharedtask/{{user}}/{{task._id}}" readonly />
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="access" style="margin-bottom:10px">
+                <input ng-model='task.sharestatus' type="radio" name="shareby" value='email'>
+                <img class="shareby" src="../images/icons/mail.png" />
+                <div class="side">
+                    <h4>Anyone with these emails</h4>
+                    <textarea ng-model='emails' class="form-control" placeholder="Enter email address"></textarea>
+                    <small>Separate multiple email addresses with a comma</small>
+                </div>
+                <div class="clear"></div>
+            </div>
+			</form>
+
+            <div class="clear"></div>
+
+            </form>
+
+            
+         </div>
+         <div class="modal-footer">
+             <button class="btn btn-default" ng-disabled="sharestarted" ng-click="cancel()">Cancel</button>
+             <button class="btn btn-success" ng-disabled="sharestarted" ng-click="share(emails,{'currenttabs':currenttabs,'recentsites':recentsites,'comments':comments})"><span ng-show='task.sharestatus=="private"'>Un-</span>Share Task</button>
+         </div>
+     </div>
+ </div>

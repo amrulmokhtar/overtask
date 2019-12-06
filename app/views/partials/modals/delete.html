@@ -1,0 +1,13 @@
+<div class="modal-header">
+	<h3>Delete <span class="highlight">{{task.name}}</span>?</h3>
+</div>
+
+<div class="modal-body">
+	<p>Are you sure you want to delete this task? <span ng-show="task.currenttask">This will close all tabs currently opened, but y</span><span ng-show="!task.currenttask">Y</span>ou can re-open the task from the trash.</p>
+	
+</div>
+
+<div class="modal-footer">
+	<button type="button" class="btn" ng-click="hide()">Cancel</button>
+	<button class="btn btn-primary" ng-click="trashTask(task); hide();">Delete Task</button>
+</div>

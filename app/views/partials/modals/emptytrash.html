@@ -1,0 +1,21 @@
+<div id="emptyTrashModal">
+    <div class="modal-content">
+        
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+            <h4 class="modal-title big" id="emptyTrashModalLabel">Empty Trash</h4>
+        </div>
+        <div class="modal-body">
+            
+            <p>Do you want to empty the trash? Tasks would be deleted permanently and would not be retrievable.</p>
+
+        </div>
+        <div class="modal-footer">
+
+            <a class="btn btn-default" ng-click="cancel()">Cancel</a>
+            <a class="btn btn-primary" ng-click='trash()'>Empty Trash</a>
+
+<!--             <a class="btn btn-success btn-lg2 btnwhatsnew" data-dismiss="modal"><h3>Start using Overtask!</h3></a> -->
+        </div>
+    </div>
+</div>

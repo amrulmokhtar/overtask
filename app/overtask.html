@@ -1,0 +1,36 @@
+  	<div id="header">
+  		<h1>OverTask</h1>
+  		<a href="workingtask.html">Working task</a>
+  	</div>
+  	<div id="newtask">
+			<form>
+				<input class="full" type="text" name="Title" placeholder="Task Title" ng-model="task.name"/>
+				<select name="Category">	
+					<option value="">Category</option>
+					<option value="Assignments">Assignments</option>
+					<option value="Research">Research</option>
+				</select>
+				<input class="partial" type="text" name="AddPeople" placeholder="Add People" />
+				<button class="sub add">Add</button>
+				<ul class="people">
+					<li><img src="#" /></li>
+					<li><img src="#" /></li>
+					<li><img src="#" /></li>
+				</ul>
+				<button class="full submit" ng-click="addTask(task)">Add Task</button> 
+			</form>
+		</div>
+		
+		<div id="currenttask" ng-repeat="task in tasks">
+			<div id="task">
+				<img class="tabimg" src="#" />
+				<h3>{{task.name}}</h3>
+				<p>Category</p>
+				<ul class="people">
+					<li><img src="#" /></li>
+					<li><img src="#" /></li>
+					<li><img src="#" /></li>
+				</ul>
+				<button class="full" type="submit">View Task</button> 
+			</div>
+		</div>

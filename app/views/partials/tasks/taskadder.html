@@ -1,0 +1,49 @@
+<div class="createblock">
+    <form ng-submit="addTask(task)">
+    <input id="tasknameadder" focus-on="focusMe" ng-model="task.name" class="form-control input-lg" type="text" placeholder="Enter Task Name">
+    </form>
+
+    <a ng-click="getTabs();addingTabs=!addingTabs" class="btn btn-default btnadd"><img src="../images/icons/addtabs-dark.png" /> Add Current Tabs</a>
+
+   <a ng-click="addTask(task)" class="btn btn-lg btn-success btnright">Create Task</a> 
+    <a class="btn btn-default btnoptions" ng-click="advancedSettings=!advancedSettings"><img src="../images/icons/gear-dark.png" /></a>
+    <div class="clear"></div>
+
+    <div collapse="!advancedSettings" class="collapse" id="options">
+        <p class="createtext"><img src="images/icons/category-blue.png" />Category</p>
+        <input ng-model="task.category" class="form-control input-lg" type="text" placeholder="Enter Category">
+        <p class="createtext"><img src="images/icons/calendar-blue.png" /> Due Date</p>
+        <input ng-model="task.duedate" min="{{today|date:'yyyy-MM-dd'}}" class="form-control input-lg" type="date" placeholder="Enter Due Date">
+        <!---
+        <p class="createtext"><img src="images/icons/calendar-blue.png" />Scheduled Date</p>
+        <input ng-model="task.scheduleddate" class="form-control input-lg" type="date" placeholder="Enter Scheduled Date">
+        <p class="createtext"><img src="images/icons/hourglass-blue.png" />Due Date</p>
+        <input ng-model="task.duedate" class="form-control input-lg" type="date" placeholder="Enter Due Date">
+         -->
+        <p class="createtext"><img src="images/icons/priority-blue.png" />Priority</p>
+        <div class="prioritybox">
+            <input ng-model="task.priority" class="form-control priorityrange" type="range" list="prioritylist" value=0 min=0 max=3>
+            <div class="prioritylabel">
+                <img src="images/imgp0.png" class="p0" />
+                <img src="images/imgp1.png" class="p1" />
+                <img src="images/imgp2.png" class="p2" />
+                <img src="images/imgp3.png" class="p3" />
+            </div>
+        </div>
+        <div class="clear"></div>
+        <p class="createtext"><img src="images/icons/notes-blue.png" />Notes</p>
+        <textarea class="form-control" ng-model="task.description" ng-hide="sharing" rows="6" type="text" placeholder="Add Notes. . ." style="margin: 10px;width: 90%;"></textarea>
+    </div>
+
+     <div id="addTabs" collapse="!addingTabs">
+        <h4 ng-show="opentabs.length!=0">Select tabs to add to task OR <a ng-click="addalltabs(opentabs)" ng-class="{tabselected:tabstoadd.length==opentabs.length}" class="btn btn-default addtabs">Add All tabs</a></h4>
+        <h4 ng-show="opentabs.length==0">There are no opened tabs to add.</h4>
+        <div id="addtabscontainer" class="nocontainer">
+            <input ng-hide="opentabs.length==0" ng-model="searchaddtabs" class="form-control input-lg" type="text" placeholder="Search tabs...">
+            <div ng-click="addTabtoAdd(tab)" ng-repeat="tab in opentabs | filter:searchaddtabs" ng-class="{addtabs:true, tabselected:tab.addselected}">
+                <img ng-src="http://g.etfv.co/{{tab.url}}" class="favicon" />{{tab.title}}
+            </div>
+        </div>
+    </div>
+
+</div>

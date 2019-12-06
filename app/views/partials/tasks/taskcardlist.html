@@ -1,0 +1,34 @@
+<div id="main">
+    <div ng-model="activetasktab" data-fade="1">
+        <div ng-show="list.mode.home"  id="home">
+
+            <div ot-task-adder>
+            </div>
+            <!-- 
+            <div class="emptydata emptydata-lg" ng-hide="(tasks|filter:filterset.filter|filter:notdeleting).length > 0">                <img src="images/emptydata/notoday.png" alt="" />
+            </div>-->
+        
+            <div class="emptydata emptydata-lg" ng-hide="(tasks|filter:filterset.filter).length > 0 ">
+                <img ng-show="filterset.img == 'createatask.png'" src="images/emptydata/createatask.png" alt="" />
+                <img ng-show="filterset.img == 'notasks.png'" src="images/emptydata/notasks.png" alt="" />
+                <img ng-show="filterset.img == 'notoday.png'" src="images/emptydata/notoday.png" alt="" />
+                <img ng-show="filterset.img == 'notommorow.png'" src="images/emptydata/notomorrow.png" alt="" />
+                <img ng-show="filterset.img == 'nothisweek.png'" src="images/emptydata/nothisweek.png" alt="" />
+                <img ng-show="filterset.img == 'notrashed.png'" src="images/emptydata/notrashed.png" alt="" />
+                <img ng-show="filterset.img == 'nocompleted.png'" src="images/emptydata/nocompleted.png" alt="" />
+            </div>
+
+            <div masonry class="js-masonry" column-width="10"
+                item-selector=".taskblock" id="taskcontainer"
+                >
+                <!--         <div ng-show="!filterbox"> -->
+                <div masonry-brick ot-task-card class="taskblock"
+                    ng-repeat="task in tasks | orderBy:'-startdate' |filter:{name:tasksearch||''} | filter:filterset.filter |filter:notdeleting | orderBy:orderby[0]:orderby[1] track by task._id"><!-- FIXME task._id -->
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</div>

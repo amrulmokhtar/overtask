@@ -1,0 +1,42 @@
+<div id="addTabsModal">
+    <div class="modal-content">
+        
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+            <h4 ng-show="opentabs.length!=0">Select tabs to add to task OR <a ng-click="addalltabs(opentabs)" ng-class="{tabselected:tabstoadd.length==opentabs.length}" class="btn btn-default addtabs">Add All tabs</a></h4>
+            <h4 ng-show="opentabs.length==0">There are no opened tabs to add.</h4>
+        </div>
+        <div class="modal-body">
+            
+            <div id="addtabscontainer" ng-show="opentabs.length!=0">
+                <input ng-model="searchaddtabs" class="form-control" type="text" placeholder="Search tabs...">
+                <div ng-click="addTabtoAdd(tab)" ng-repeat="tab in opentabs | filter:searchaddtabs | filter:filterNotAlreadyAdded" ng-class="{addtabs:true,tabselected:tab.addselected}">
+                    <img ng-src="http://g.etfv.co/{{tab.url}}" class="favicon" /><p>{{tab.title || tab.url}}</p></div>
+
+                <div class="collapsibleheader" ng-click="showalreadyadded=!showalreadyadded">
+                    <h3>Already Added</h3>
+                    <a class="drop" ng-click="alreadyinside = !alreadyinside" ng-class="{up: alreadyinside}"><img src="images/icons/upcaret-blue.png" /></a>
+                </div>
+               <div class="clearfix"></div>
+                <div collapse="showalreadyadded">
+                     <div ng-repeat="tab in opentabs | filter:filterAlreadyAdded" ng-class="{addtabs:true}" class="tabdisabled">
+                    <img ng-src="http://g.etfv.co/{{tab.url}}" class="favicon" /><p>{{tab.title || tab.url}}</p> </div>
+                </div>
+
+                <div class="collapsibleheader" ng-click="showtabsinside=!showtabsinside">
+           		   <h3>Tabs inside</h3>
+                   <a class="drop" ng-click="tabsinside = !tabsinside" ng-class="{down: tabsinside}"><img src="images/icons/downcaret-blue.png" /></a>
+               </div>
+               <div class="clearfix"></div>
+               <div collapse="!showtabsinside">
+                 <div ng-repeat="tab in task.tabs" ng-class="{addtabs:true}">
+                <img ng-src="http://g.etfv.co/{{tab.url}}" class="favicon" /><p>{{tab.title || tab.url}}</p></div>
+            </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <a ng-click="commitadds(task); ok()" class="btn btn-primary">Done</a>
+        </div>
+    </div>
+</div>

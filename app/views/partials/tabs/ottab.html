@@ -1,0 +1,49 @@
+
+<li class="tab">
+    <div class="pull-left">
+        <div ng-click="switchTo(tab)">
+            <img ng-src="http://g.etfv.co/{{tab.url}}" class="favicon" />
+            <h3>{{tab.title || tab.url}}</h3>
+        </div>
+        <!-- 
+        <span class="label label-inverse">{{tab.category}}, {{tab.comments.length}} Comments</span>
+        -->
+        <ul id="tags">
+        	<li class="comments" ng-click='openCommentModal(tab)'><a>{{tab.comments.length}} Comment<span ng-hide="tab.comments.length==1">s</span></a></li>
+            <li class="{{tab.category}}"><a>{{tab.category}}</a></li>
+            <li class="add"><input class="tag" placeholder="Enter tag" /><a><img src="../images/icons/add.png" /></a></li>
+        </ul>
+    </div> 
+   <div class="clear"></div>
+
+    <a ng-click="isCollapsed = !isCollapsed; currenttabarrow=!currenttabarrow"><img class="droparrow" ng-class="{up:currenttabarrow}" src="../images/icons/downcaret.png" /></a>
+
+    <div class="clear"></div>
+    <div collapse='!isCollapsed' class="optionsbox">
+         <a class="btn btn-primary pull-right i-comment" ng-click='openCommentModal(tab); isCollapsed = !isCollapsed; currenttabarrow=!currenttabarrow'>Comment</a>
+        <a class="btn pull-right i-close" ng-click="removeTab(tab,task.tabs); isCollapsed = !isCollapsed; currenttabarrow=!currenttabarrow">Close</a>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <!--
+    <div class="dropdownbox">
+    	<a ng-hide="tab.closed" ng-click="switchTo(tab)" class="btn btn-success pull-right i-view">View</a> 
+    <a class="btn btn-primary pull-right i-comment" ng-click="viewingtab=tab" bs-modal="'views/partials/modals/comments.html'">Comment</a>
+    <a class="btn pull-right i-close" ng-click="removeTab(tab,task.tabs)">Close</a>
+    <a ng-show="tab.closed" class="btn btn-default pull-right i-redo"  ng-click="reopenTab(tab)"></a>
+    </div>-->
+    <!-- 
+    <a ng-hide="tab.closed" ng-click="switchTo(tab)" class="btn btn-success pull-right i-view">View</a> 
+    <a class="btn btn-primary pull-right i-comment" ng-click="viewingtab=tab" bs-modal="'views/partials/modals/comments.html'">Comment</a>
+    <a class="btn pull-right i-close" ng-click="removeTab(tab,task.tabs)">Close</a>
+    <a ng-show="tab.closed" class="btn btn-default pull-right i-redo"  ng-click="reopenTab(tab)"></a>-->
+</li>

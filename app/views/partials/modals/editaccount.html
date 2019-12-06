@@ -1,0 +1,51 @@
+<div id="editAccountModal">
+    <div class="modal-content">
+        
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="editAccountModalLabel">Account Details</h4>
+        </div>
+        <div class="modal-body">
+            
+            <ul class="modaltabs">
+                <li class="active"><a data-target="#profile" data-toggle="tab">Profile</a></li>
+                <li><a data-target="#account" data-toggle="tab">Account</a></li>
+                <li><a data-target="#notifications" data-toggle="tab">Notifications</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="profile" class="tab-pane modaltabscontent active">
+                    <p class="createtext">Your Name</p>
+                    <input class="form-control input-lg" type="text" value="Shiva Narrthine">
+                    <p class="createtext">Your Username</p>
+                    <input class="form-control input-lg" type="text" value="@narrthine">
+                    <p class="createtext">Your Email</p>
+                    <input class="form-control input-lg" type="text" value="shivanarrthine@gmail.com">
+                </div>
+                <div id="account" class="tab-pane modaltabscontent">
+                    <h4 class="modal-title">Change Password</h4>
+                    <p class="createtext">New Password</p>
+                    <input class="form-control input-lg" type="password">
+                    <p class="createtext">Confirm New Password</p>
+                    <input class="form-control input-lg" type="password">
+
+                    <h4 class="modal-title">Delete Account</h4>
+                    <a class="btn btn-default" data-dismiss="modal" style="margin-top: 10px">Delete My Account</a>
+                </div>
+                <div id="notifications" class="tab-pane modaltabscontent">
+                    <div class="checkbox" style="margin-left: 15px">
+                        <input type="checkbox" checked="checked" id="emailnewsletter"/>
+                        <label for="emailnewsletter" class="checkbox"><span></span>Email Notifications</label>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <a class="btn btn-default" ng-click="cancel()">Cancel</a>
+            <a class="btn btn-primary" ng-click="ok()">Edit Account</a>
+        </div>
+    </div>
+</div> 

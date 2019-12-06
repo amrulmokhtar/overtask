@@ -1,0 +1,22 @@
+<div id="confirmationModal">
+    <div class="modal-content">
+        
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+            <h4 class="modal-title big" id="confirmationModalLabel">Delete {{deletemodaltask.name}}</h4>
+        </div>
+        <div class="modal-body">
+            
+            <p>This task has been shared with others. Do you want to delete the task but keep it shared or delete and stop sharing it.</p>
+			<p>You will not be able to unshare the task from inside OverTask if the task is still shared when it gets permanently deleted</p>
+        </div>
+        <div class="modal-footer">
+
+            <a class="btn btn-default btn-lg3 btndeleteshared" ng-click="cancel()" style="line-height: 40px">Cancel</a>
+            <a class="btn btn-primary btn-lg3 btndeleteshared" ng-click='trash()'><h3>Delete Task</h3><p>but keep the shared copy</p></a>
+            <a class="btn btn-primary btn-lg3 btndeleteshared" ng-click='unshare()'><h3>Delete Task</h3><p>and stop sharing it</p></a>
+
+<!--             <a class="btn btn-success btn-lg2 btnwhatsnew" data-dismiss="modal"><h3>Start using Overtask!</h3></a> -->
+        </div>
+    </div>
+</div>

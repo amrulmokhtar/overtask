@@ -1,0 +1,42 @@
+<div id="commentsModal">
+     <div class="modal-content">
+         <div class="modal-header">
+             <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+             <img ng-src="http://g.etfv.co/{{tab.url}}" class="favicon" />
+             <h4 class="modal-title" id="commentsModalLabel">{{tab.title}}</h4>
+             <div class="clear"></div>
+         </div>
+         <div class="modal-body">
+            <div class="commentempty" ng-show="tab.comments.length==0">
+                <img src="../images/emptydata/nocomments.png" />
+            </div>
+             <div class="commentcontainer">
+                 <div class="commentblock" ng-repeat="comment in tab.comments track by $index" ng-hide="tab.comments.length==0" ng-mouseover="commentoptions=true" ng-mouseout="commentoptions=false">
+                     <img ng-src="http://www.gravatar.com/avatar/{{gravify(comment.user.email)}}" />
+                     <h3>@{{comment.user.name || comment.user}}</h3>
+                     <p ng-hide='comment.editing'>{{comment.text}}</p>
+                     
+                     <textarea ng-show='comment.editing' ng-model='comment.text'></textarea>
+                     <div class="clear"></div>
+                     <div class="commentoptions" ng-show="commentoptions==true">
+                         <a ng-click='comment.lastcomment = comment.text; comment.editing=true;alert("hi")' class="commentoptions edit"><img src="../images/icons/edit-dark.png" /></a>
+                         <a ng-click='tab.comments.splice($index,1)' class="commentoptions trash"><img src="../images/icons/trash-dark.png" /></a>
+                     </div>
+                     <a class="btn btn-success btnedit" ng-show="comment.editing" ng-click="comment.editing = false">Edit</a>
+                     <a class="btn btn-default btncancel" ng-show="comment.editing" ng-click="comment.text = comment.lastcomment; comment.editing = false">Cancel</a>
+                 </div>
+             </div>
+
+            <form ng-submit="addcomment(commententer,tab,task);commententer=''">
+                 <textarea ng-model="commententer" class="comments" placeholder="Enter comment..."></textarea>
+                 <input type="submit" class="btn btn-success pull-right commentbtn" value="Comment"/>
+             </form>
+             <div class="clear"></div>
+         </div>
+         <div class="modal-footer">
+             <a class="btn btn-default" ng-click="cancel()">Done</a>
+         </div>
+     </div>
+ </div>
+
+ 

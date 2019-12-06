@@ -1,0 +1,546 @@
+@import "overtaskskin.less";
+
+html, body{
+	height: 100%;
+}
+
+body{
+	background: @white;
+	font-family: 'Lato', sans-serif;
+
+	&.cbp-spmenu-push-toleft{
+		#sidebar, .linkblock{
+			left: -240px;
+			-webkit-transition: all 0.3s ease;
+			-moz-transition: all 0.3s ease;
+			transition: all 0.3s ease;
+		}
+		nav#nav{
+			left: -280px;
+			-webkit-transition: all 0.3s ease;
+			-moz-transition: all 0.3s ease;
+			transition: all 0.3s ease;
+		}
+	}
+}
+
+.up{
+	-webkit-transform:rotate(180deg);
+	-webkit-transition: all 1s ease;
+}
+
+.down{
+	-webkit-transform: rotate(-180deg);
+	-webkit-trasition: all 1s ease;
+}
+
+.drop{
+		cursor: pointer;
+		display: block;
+		float: right;
+		margin: 5px;
+		-webkit-transition: all 1s ease;
+		//position: absolute;
+		//top: 5px;
+		//right: 5px;
+		
+		img{
+			width: 20px;
+			height: 15px;
+		}
+/*
+		&.up{
+			-webkit-transform:rotate(180deg);
+			-webkit-transition: all 1s ease;
+		}*/
+	}
+
+a{
+	cursor: pointer;
+}
+
+// Nav bar
+nav#nav{
+	position: fixed;
+	width: 100%;
+	z-index: 2;
+	left: 0;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	
+	
+}
+
+
+// responsive
+
+@media (min-width:1600px) {
+	
+	#sidebar{
+		width: 18%;
+	}
+	
+	#main{
+		width: 82%;
+		left: 18%;
+	}
+	
+	.taskblock{
+		width: 18%;
+	}
+	
+	#column {
+		
+		-webkit-column-count: 5;
+		-webkit-column-gap: 20px;
+	}
+}
+
+// Right menu bar 
+.cbp-spmenu-vertical a{
+		border: 0;
+		padding: 0;	
+	}
+	
+	.cbp-spmenu a.link{
+		color: @white;
+		display: inline;
+		font-weight: bold;
+		
+		&:hover{
+			background: none;
+			text-decoration: none;
+			border: 0;
+		}
+		
+	}
+
+// User settings
+#rightmenu{
+	padding: 10px 0;
+}
+
+#usernotloggedin, #userloggedin{
+	text-align: center;
+	margin: 10px 10px;
+	h3{
+		color: @white;
+		font-weight: 300;
+		margin: 20px auto 0;
+		width: 90%;
+		word-wrap: break-word;
+	}
+	
+	.userdetails{
+		position: relative;
+		margin: 20px auto;
+
+		img.editprofile{
+			position :absolute;
+			top: 0;
+			right: 40px;
+			width: 35px;
+			height: 35px;
+			padding: 7px;
+			background: #16a085;
+			.radius(30px);
+
+			&:hover{
+				background: #106E5B;
+			}
+		}
+
+		img.profile{
+			width: 100px;
+			height: 100px;
+			border: 5px solid @white;
+			.radius(50px);
+			margin: 0 0 10px 0;
+			padding: 0;
+		}
+
+		h3{
+			color: @white;
+			font-weight: 300;
+			margin: 0 auto;
+			width: 90%;
+			word-wrap: break-word;
+		}
+
+		p{
+			font-weight: 300;
+			font-size: 11pt;
+			color: #111;
+		}
+	}
+
+	.actionbtns{
+		position: absolute;
+		bottom: 0;
+		padding-bottom: 20px;
+
+		a.btn{
+			width: 200px;
+			margin: 5px auto;
+			padding: 10px;
+			font-weight: 400;
+			background: #2980b9;
+			color: @white;
+
+			&:hover, &.signout{
+				background: #216592;
+			}
+			
+			&.signout:hover{
+				background: #1B5378;
+			}
+		}
+
+		p{
+			font-weight: 300;
+			font-size: 9pt;
+			line-height: 12px;
+			color: @white;
+			margin-top: 10px;
+			text-align: center;
+
+			a{
+				color: @white;
+				text-decoration: none;
+				font-weight: bold;
+				font-size: 9pt;
+			}
+		}
+	}
+	
+	.signinform{
+		padding: 0 10px;
+
+		h3{
+			//display: none;
+			color: @white;
+			font-weight: 300;
+			font-size: 18pt;
+			margin: 20px auto 30px;
+			width: 90%;
+			word-wrap: break-word;
+		}
+
+		form{
+			margin: 0;
+			padding: 0;
+		}
+		
+		input.form-control{
+			border: 0;
+			padding: 10px 10px;
+			height: auto;
+
+			&:focus{
+
+				border: 1px solid @overtaskblue;
+			}
+		}
+
+		.btn{
+			padding: 10px;
+			font-weight: normal;
+		}
+		
+		p{
+			color: @white;
+			margin: 30px 0;
+		}
+
+		a.forgot{
+			display: block;
+			text-decoration: none;
+			color: @white;
+			font-size: 11pt;
+			text-align: right;
+			margin: 10px 0 20px 0;
+		}
+	}
+	
+	/*
+	form{
+		margin: 0;
+		padding: 0;
+	}
+	
+	input.form-control{
+		border: 0;
+		padding: 20px 10px;
+	}
+	
+	.btn{
+		padding: 10px;
+		font-weight: normal;
+	}
+	
+	p{
+		color: @white;
+		margin: 0;
+	}
+	
+	#settings{
+		text-align: left;
+		background: #16a085;
+		margin: 10px -10px;
+		padding: 20px;
+		
+		label, p.help-block{
+			margin: 0;
+		}
+		label{
+			color: @white;
+		}
+		p.help-block{
+			color: #444;
+		}
+		
+		.btnsetting{
+			font-size: 10pt;
+			padding: 5px;
+		}
+	}*/
+}
+
+
+
+// modal tabs - edit account details
+
+ul.modaltabs{
+	margin: 10px 0;
+	padding: 0 0 5px 0;
+	border-bottom: 2px solid @overtaskblue;
+
+	li{
+		display: inline;
+		list-style: none;
+
+		a{
+			padding: 7px 15px;
+			font-size: 10pt;
+			font-weight: 400;
+			text-transform: uppercase;
+			text-decoration: none;
+			cursor: pointer;
+
+			&:hover{
+				background: #ddd;
+				border: 0;
+			}
+		}
+
+		&.active{
+
+			a{
+				font-weight: 900;
+				border: 2px;
+				border-color: @overtaskblue @overtaskblue @white @overtaskblue;
+				border-style: solid;
+
+				&:hover{
+					background: none;
+					border: 2px;
+					border-color: @overtaskblue @overtaskblue @white @overtaskblue;
+					border-style: solid;
+				}
+			}
+		}
+	}
+}
+
+.modaltabscontent{
+	color: @black;
+
+	h4{
+		font-weight: 300;
+		margin: 10px 0 0 0;
+	}
+
+	.btn{
+		padding: 7px;	
+	}
+}
+
+
+// Modal - Feedback
+#feedbackModal{
+	p{
+		font-weight: bold;
+	}
+
+	input[type="radio"]{
+		margin: 5px 10px;
+	}
+/*
+	textarea{
+		width: 100%;
+		height: 100px;
+		margin-top: 20px;
+		padding: 10px;
+		font-size: 11pt;
+
+		&:focus{
+			-webkit-box-shadow: none;
+			border: 1px solid @green;
+		}
+	}*/
+}
+
+// Modal - Comments
+
+/*
+ul#comments{
+	margin: 0;
+	padding: 0;
+	
+	li{
+		padding: 10px;
+		margin: 10px 0;
+		list-style: none;
+		display: block;
+		border-bottom: 1px solid @overtaskblue;
+		clear: both;
+		/*color: @overtaskblue;
+		background: @white;
+		border: 1px solid @overtaskblue;
+		//-webkit-border-radius: 15px 0 15px 0;
+
+		img{
+			width: 40px;
+			height: 40px;
+			float: left;
+			margin: 0 10px 0 0;
+		}
+
+		p{
+			width: 560px;
+			float: left;
+
+		}
+		
+	}
+
+}*/
+
+.commentcontainer{
+	max-height: 300px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.commentblock{
+	padding: 10px 0;
+	border-bottom: 1px solid #ddd;
+	position: relative;
+
+	img{
+		width: 40px;
+		height: 40px;
+		float: left;
+		margin: 0 20px 0 0;
+		.radius(20px);
+	}
+
+	p{
+		width: 500px;
+		float: left;
+	}
+
+	a.commentoptions{
+		position: absolute;
+		cursor: pointer;
+
+		img{
+			width: 20px;
+			height: 20px;
+		}
+
+		&.edit{
+			top: 7px;
+			right: 20px;
+		}
+
+		&.trash{
+			top: 7px;
+			right: -5px;
+		}
+	}
+
+
+}
+
+
+
+textarea.comments{
+	width: 100%;
+	min-height: 70px;
+	margin: 20px 0 10px 0;
+	padding: 10px;
+	resize: none;
+}
+
+input.commentbtn{
+		padding: 10px;
+	}
+
+
+
+// Priority box
+.prioritybox{
+	margin: 0 auto;
+	padding: 0;
+	width: 200px;
+
+	input[type="range"]{
+		width: 200px;
+	}
+
+	.prioritylabel{
+
+		img{
+			position: relative;
+			height: 20px;
+
+			&.p0{
+				left: 0;
+			}
+
+			&.p1{
+				left: 32px;
+			}
+
+			&.p2{
+				left: 72px;
+			}
+
+			&.p3{
+				left: 106px;
+			}
+		}
+	}
+}
+
+
+
+.priorityboxedit{
+	
+	input[type="radio"] + label span, inpyt[type="radio"]:checked + label span{
+		margin-right: 5px;
+	}
+	
+	input[type="radio"] + label.cp0 span{
+		background: url("../images/checkboxpriority30.png") left top no-repeat;
+		border: 1px solid #666;
+	}
+	
+	input[type="radio"]:checked + label.cp0 span{
+		background: url("../images/checkboxpriority30.png") -30px top no-repeat;
+	}
+}
+
+

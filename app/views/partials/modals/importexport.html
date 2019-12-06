@@ -1,0 +1,31 @@
+<div id="importExportModal">
+     <div class="modal-content">
+         <div class="modal-header">
+             <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+             <h4 class="modal-title" id="importExportModalLabel">Import / Export Tasks</h4>
+             <div class="clear"></div>
+         </div>
+         <div class="modal-body">
+
+            <p class="modaltext">Import Tasks to Overtask</p>
+            <p>Import your tasks from a JSON file into Overtask</p>
+            <div file-input="file" style="float: left; width:300px;background: #f1f1f1; padding: 7px; height: 35px"></div>
+            <a class="btn btn-default" ng-click="readFile(file)" style="padding:7px; margin: 0 0 10px 0; float: left">Import Tasks</a>
+            <div class="clearfix"></div>
+
+            <p class="modaltext">Export Tasks to JSON</p>
+            <p>All your tasks would be exported to a JSON file</p>
+            <a class="btn btn-default" ng-click="exportjson(tasks)" style="padding:7px; margin: 10px 0">Export Tasks</a>
+            
+            <p class="modaltext">Export Tasks to Chrome Bookmarks</p>
+            <p>All your tasks in Overtask would be exported to a HTML file that can be imported into Google Chrome.</p>
+            <a class="btn btn-default" ng-click="exportbookmarks(tasks)" style="padding:7px; margin: 10px 0">Export Tasks to Bookmarks</a>
+
+         </div>
+         <div class="modal-footer">
+             <a class="btn btn-primary" ng-click="cancel()">Done</a>
+         </div>
+     </div>
+ </div>
+
+ 

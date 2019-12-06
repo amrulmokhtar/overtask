@@ -1,0 +1,81 @@
+<div class="taskdetails" id="taskdetails">
+    <h3 ng-click='openEdit(task)'>{{task.name}}</h3>
+    <!--<a class="socialshare" ng-click="openSocialShareModal()"><img src="../images/icons/share-blue.png" /></a>-->
+    <div class="detailswrapper">
+        <div ng-click='openEdit(task)' class="details i-category-dark">
+            <p>{{task.category}}</p>
+        </div>
+        <!--
+        <div class="details i-calendar-dark">
+            <p ng-show="hasdate(task.scheduleddate)">{{renderdate(taskmanager.currenttask.scheduleddate)|date:'mediumDate'}}</p>
+            <p ng-hide="hasdate(task.scheduleddate)">None</p>
+        </div>
+        -->
+        <div ng-click='openEdit(task)' class="details i-calendar-dark">
+            <p ng-show="hasdate(task.duedate)">{{renderdate(task.duedate)|date:'mediumDate'}}</p>
+            <p ng-hide="hasdate(task.duedate)">None</p>
+        </div>
+        <div ng-click='openEdit(task)' class="details i-priority-dark">
+            <p>{{prioritylabels[''+task.priority]}}</p>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <!-- Notes -->
+    <div class="moredetails" ng-click="showNotes = !showNotes; notesarrowup = !notesarrowup">
+        <div class="moredetailsheader">
+            <img src="../images/icons/notes-blue.png" class="headericon" />
+            <h4 class="headertext">Notes</h4>
+            <a><img class="droparrow" ng-class="{down: notesarrowup}" src="../images/icons/upcaret-blue.png" /></a>
+        </div>
+        <div collapse="showNotes">
+            <p ng-show="task.description.length>0">{{task.description}}</p>
+            <p ng-show="task.description.length==0">No notes added. <a ng-click="openEdit(task);showNotes = !showNotes; notesarrowup = !notesarrowup">Go ahead and add one.</a></p>
+        </div>
+    </div>
+
+    <!-- Share Task -->
+    <div class="moredetails" ng-show="task.shares.length>0">
+        <div class="moredetailsheader" ng-click="showShare = !showShare; sharearrowup = !sharearrowup">
+            <img src="../images/icons/collaborate-blue.png" class="headericon" style="width: auto"/>
+            <h4 class="headertext">Shared With</h4>
+            <a><img class="droparrow" ng-class="{up: sharearrowup}" src="../images/icons/downcaret-blue.png" /></a>
+        </div>
+        <div collapse="showShare" ng-show="task.shares.length>0">
+            <ul ng-disabled='!user' class="collaboratelist" ng-click="openShareModal()">
+                <li ng-repeat="user in task.shares | limitTo: 3" tooltip="{{user}}" tooltip-placement="right"><img ng-src="http://www.gravatar.com/avatar/{{md5(user)}}?"></li>
+                <li ng-hide='task.shares.length < 4' class="more"><span class="number">{{task.shares.length - 3}}</span> more</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <a class="btn btn-primary btntask" ng-click="deleteTask(task)" tooltip="Delete" tooltip-placement="bottom">
+    <img src="images/icons/trash.png" alt="" />
+    </a>
+
+    <a id="edittaskbtn"
+    class="btn btn-primary btntask" ng-click='openEdit(task)' tooltip="Edit" tooltip-placement="bottom">
+    <img
+    src="images/icons/edit.png" alt="" /></a>
+    <a ng-disabled='!user'
+    class="btn btn-primary btntask" ng-click="openShareModal()"  tooltip="Share" tooltip-placement="bottom">
+    <img src="images/icons/collaborate.png" alt="" /></a> <a
+    class="btn btn-success btntask" ng-click="finishTask(task)" tooltip="Complete" tooltip-placement="bottom">
+    <img
+    src="images/icons/done.png" alt="" /></a>
+
+    <div ng-hide='user' class="loginmessage">
+        You need to be logged in to share tasks.
+    </div>
+
+
+    <!--
+	<textarea ng-model="task.description" ng-hide="sharing" rows=10 type="text" style="width:90%; margin-top:1em" placeholder="Description"></textarea>
+-->
+    <div ng-show="sharing" >
+    <div ot-share-box></div>
+    </div>
+</div>
+

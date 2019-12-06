@@ -1,0 +1,38 @@
+<div ng-controller="ChromeAppsController">
+<div class="modal-header">
+	<h3>My Chrome Apps</h3>
+</div>
+
+<div class="modal-body">
+
+  <div id="spacer_dummy"></div>
+  <div id="outer" >
+  
+  <!--
+  <div id="appstore_link">
+	 <p>No apps installed.</p><p>
+	 <button class="btn">Go get some</button></p>
+  </div>-->
+  
+  <div id="search_container">
+	 <input id="search" type="text" class="input-block-level" placeholder="Search apps..." spellcheck="false" ng-model="appsearch">
+  </div>
+  
+  <div id="apps" ng-repeat="app in appslist | filter:appsearch" >
+	 <h4 ng-hide="appslist.length">No apps installed. Download some from the Chrome Web Store!</h4>
+	  <div class="chromeapps" ng-click="launchApp(app.id)">
+		  <img ng-src="{{getAppIconURL(app)}}"></img>
+		  <p style="word-wrap: break-word">{{app.name}}</p>
+	  </div>
+  </div>
+
+  
+  </div>
+
+</div>
+
+<div class="modal-footer">
+  <a href="https://chrome.google.com/webstore/category/apps" target="_blank" class="btn " >Chrome Web Store</a>
+  <button class="btn btn-primary" ng-click="hide();">Close</button>
+</div>
+</div>

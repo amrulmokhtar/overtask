@@ -1,0 +1,47 @@
+            <div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click='cancel(task)' aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="editTaskModalLabel">Edit Task</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="createtext">Task Name</p>
+                        <input ng-model='task.name' class="form-control" type="text" placeholder="Enter Task Name">
+                        <p class="createtext"><img src="images/icons/category-blue.png" />Category</p>
+                        <input ng-model='task.category' class="form-control" type="text" placeholder="Enter Category">
+                        <p class="createtext"><img src="images/icons/calendar-blue.png" /> Due Date</p>
+                        <input min="{{today|date:'yyyy-MM-dd'}}" ng-model="task.duedate" class="form-control input-lg" type="date" placeholder="Enter Due Date">
+                        <!--
+                        <p class="createtext"><img src="images/icons/calendar-blue.png" />Scheduled Date</p>
+                        <input ng-model='scheduleddatedate' class="form-control" type="date" placeholder="Enter Scheduled Date">
+                        <p class="createtext"><img src="images/icons/hourglass-blue.png" />Due Date</p>
+                        <input ng-model='duedatedate' class="form-control" type="date" placeholder="Enter Due Date">
+                    -->
+                        <p class="createtext"><img src="images/icons/priority-blue.png" />Priority</p>
+                        <div class="prioritybox">
+                            <input ng-model="task.priority" class="form-control priorityrange" type="range" list="prioritylist" value="0" min="0" max="3">
+                            <datalist id="prioritylist">
+                                <select>
+                                    <option value="0" label="None" />
+                                    <option value="1" label="Low" />
+                                    <option value="2" label="Medium" />
+                                    <option value="3" label="High" />
+                                </select>
+                            </datalist>
+                            <div class="prioritylabel">
+                                <img src="images/imgp0.png" class="p0" />
+                                <img src="images/imgp1.png" class="p1" />
+                                <img src="images/imgp2.png" class="p2" />
+                                <img src="images/imgp3.png" class="p3" />
+                            </div>
+                        </div>
+
+                        <p class="createtext"><img src="images/icons/notes-blue.png" />Notes</p>
+                        <textarea class="form-control" ng-model="task.description" ng-hide="sharing" rows="6" type="text" placeholder="Add Notes. . ."></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn" ng-click='cancel(task)'>Cancel</a>
+                        <a ng-click="ok(task)" class="btn btn-primary">Edit Task</a>
+                    </div>
+                </div>
+            </div>

@@ -1,0 +1,501 @@
+
+@import "overtaskskin.less";
+
+// Left Sidebar
+
+#sidebar{
+	font-family: 'Lato', sans-serif;
+	width: 20%;
+	height: 100%;
+	background: #fafafa; //#444
+	float: left;
+	padding: 90px 0 0;
+	position: fixed;
+	top: 0px;
+	left: 0;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	overflow-y: scroll;
+	
+	a.linkcollapse{
+		padding: 10px 20px;
+		border-bottom: 1px dashed #aaa;
+		text-decoration: none;
+		display: block;
+	}
+	
+
+	// Tab page - Task details
+
+	.taskdetails{
+		//background: #fafafa;
+		//z-index: 3;
+		//padding: 0 0 10px 0;
+		text-align: center;
+		color: #444;
+		h3{
+			cursor: pointer;
+			//max-height: 150px;
+			overflow : hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 4;
+			-webkit-box-orient: vertical;
+			margin: -20px 0 10px 0;
+			font-size: 24pt;
+			font-weight: 300;
+			line-height: 40px;
+			font-family: 'Lato', sans-serif;
+			word-wrap: break-word;
+			padding: 0 15px;
+			& a img{
+				display: inline;
+				margin: 0 0 0 5px;
+				width: 20px;
+			}
+		}
+
+		.loginmessage{
+			//background: #aaa;
+			padding: 20px 20px;
+			color: #666;
+			font-style: italic;
+		}
+
+		.socialshare{
+			margin: 0 auto 10px;
+			display: inline-block;
+
+			img{
+				width: 25px;
+				height: 25px;
+			}
+		}
+		
+		.detailswrapper{
+			float: left;
+			width: 100%;
+			background-color: #eee;
+			margin: 10px 0 10px 0;
+			padding: 0 10px;
+		}
+		
+		.details{
+			cursor: pointer;
+			background-color: none;
+			text-align: center;
+			padding: 10px 5px;
+			//margin: 0 0 10px 0;
+			width: 33%;
+			float: left;
+			
+			p{
+				font-size: 11px;
+				color: #444;
+				text-transform: uppercase;
+				font-weight: bold;
+				.overflows;
+				margin-top: 45px;
+
+				&:hover{
+					overflow: auto;
+					word-wrap: break-word;
+					white-space: normal;
+					text-overflow: overflow;
+					//background: #ddd;
+					//padding: 3px;
+				}
+			}
+			
+			img{
+				width: 40px;
+			}
+
+			&.i-category-dark, &.i-calendar-dark, &.i-priority-dark, &.i-hourglass-dark{
+				text-indent: 0;
+				background-size: 40px 40px;
+				background-position: 50% 10px;
+			}
+		}
+
+		.moredetails{
+			margin: 0 20px 20px 20px;
+			text-align: left;
+			position: relative;
+
+			.moredetailsheader{
+				cursor: pointer;
+				margin-bottom: 5px;
+			}
+
+			img.headericon{
+				display: inline;
+				width: 25px;
+				height: 25px;
+				margin: 0 5px 0 0;
+			}
+
+			h4.headertext{
+				display: inline-block;
+				color: @overtaskblue;
+				font-size: 10pt;
+				text-transform: uppercase;
+				font-weight: 900;
+			}
+
+			ul.collaboratelist{
+				margin: 0;
+				padding: 0;
+				cursor: pointer;
+			}
+		}
+		
+		a.btntask{
+			padding: 5px;
+			margin: 0 3px;
+			width: 21%;
+			img{
+				width: 30px;
+			}
+		}
+
+		// Tab page - Additional blocks
+		#edittask, #socialshare{
+			position: relative;
+			text-align: left;
+			margin: 20px 0px;
+			padding: 20px 15px 50px 15px;
+			background: #eee;
+			z-index: 3;
+
+			h3{
+				font-size: 18pt;
+				line-height: 24px;
+				font-weight: 900;
+				margin:0 -10px;
+			}
+			/*
+			a.sharebtn{
+				padding: 5px 5px;
+				width: 120px;
+				height: 40px;
+				//float: right;
+				line-height: 30px;
+
+				&:hover{
+					//display: none;
+					+ .sharebtnbox{
+						visibility: visible;
+					}
+				}
+			}*/
+
+			.sharebtnbox{
+				position: relative;
+				width: auto;
+				height: 40px;
+				overflow: hidden;
+				float: right;
+
+				.sharebtn{
+					cursor: pointer;
+					//display: block;
+					background: @green;
+					color: #fff;
+					text-align: center;
+					//padding: 5px 5px;
+					width: 120px;
+					height: 40px;
+					font-size: 13pt;
+					line-height: 40px;
+					overflow: hidden;
+				}
+
+				.socialbtnbox{
+					height: 40px;
+					width: auto;
+					background: #eee;
+					z-index: 5;
+
+					a.socialbtn{
+						cursor: pointer;
+						width: 40px;
+						height: 40px;
+						margin: 0 0 0 5px;
+						float: right;
+						.radius(20px);
+
+						img{
+							width: 40px;
+							height: 40px;
+							.radius(20px);
+						}
+					}
+
+
+				}
+				
+			}
+
+			
+
+			/*
+			a.socialbtn{
+				display: none;
+				width: 25%;
+				float: right;
+				margin: 3px 0 10px 5px;
+
+				img{
+					width: 100%;
+				}
+			}*/
+
+			textarea{
+				background: #F7F7F7;
+				border: 0;
+				height: 100px;
+				color: #444;
+
+				&:focus{
+					-webkit-box-shadow: none;
+					border: 1px solid @green;
+				}
+			}
+
+			// Task page - create task block
+			.createblock{
+				background: none;
+
+				p.createtext{
+					color: @overtaskblue;
+				}
+
+				input.form-control{
+					background: #F7F7F7;
+					color: #444;
+
+					&::-webkit-input-placeholder{
+						color: #444;
+					}
+				}	
+			}
+		}
+	}
+	
+}
+
+
+// Social media links
+
+.linkblock{
+	position: fixed;
+	bottom: 0px;
+	z-index: 3;
+	background: #eee;
+	padding: 10px;
+	text-align: center;
+	width: 20%;
+	left: 0;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+ul#social{
+	margin: 0;
+	padding: 0;
+	text-align: center;	
+	
+	li{
+		display: inline;
+		list-style: none;
+		margin: 0 3px;
+		
+		a{
+			text-decoration: none;
+			
+			img{
+				width:40px;
+			}
+		}
+	}
+}
+
+// Help links
+ul#links{
+	margin: 0;
+	padding: 0;
+	color: #444;
+	text-align: center;
+	
+	li{
+		display: inline;
+		list-style: none;
+		
+		a{
+			text-decoration: none;
+			color: #444;
+			
+			&:hover{
+				//border-bottom: 20px solid #444;
+				font-weight: 900;
+			}
+		}
+	}
+}
+
+// Filters on sidebar
+.filterbox{
+	margin: -40px 0 0 0;	
+	padding: 20px;
+
+	input.search{
+		padding: 20px;
+	}
+
+	ul.filter{
+		margin: 20px -20px;
+		padding: 0;
+
+		li{
+			list-style: none;
+			display: block;
+			position: relative;
+			cursor: pointer;
+
+			a{
+				display: block;
+				padding: 10px 20px;
+				background: #fafafa;
+				cursor: pointer;
+
+				color: #444;
+				font-size: 12pt;
+				text-decoration: none;
+
+				span.badge{
+					background: @overtaskblue;
+					margin: 0 7px;
+					color: @white;
+				}
+			}
+			
+			&:hover{
+				a{
+					background: #ddd;
+					color: #444;
+				}
+			}
+
+			&.donetrash{
+				a{
+					background: #eee;
+
+					span.badge{
+						background: #ddd;
+						color: #444;
+					}
+				}
+
+				&:hover{
+					a{
+						background: #ddd;
+					}
+				}
+
+				a.emptytrash{
+					position: absolute;
+					top: 0px;
+					right: 0px;
+					background: none;
+					padding: 8px;
+
+					img{
+						width: 25px;
+						height: 25px;
+					}
+
+					&:hover{
+						background-color: #ccc;
+					}
+				}
+
+				.tooltip{
+					width: 100px;
+				}
+			}
+			
+			&.active{
+				a{
+					background: @overtaskblue;
+					color: @white;
+
+					span.badge{
+						background: #ddd;
+						color: #444;
+					}
+				}
+
+				&.donetrash:hover{
+
+					a{
+						background: @overtaskblue;
+					}
+				}
+			}
+
+		}
+	}
+
+	.sort{
+
+		select{
+			margin: 0;
+			padding: 5px 10px;
+			width: 200px;
+			background: #1abc9c;
+		}
+
+		.bootstrap-select{
+			margin: 0;
+			padding: 0;
+			width: 300px;
+
+			.btn{
+				margin: 0;
+				padding: 5px;
+				width: 200px;
+				background: #aaa;
+				color: @white;
+			}
+		}
+	}
+}
+
+.bootstrap-select.btn-group .dropdown-menu li {
+	position: static;
+}
+
+.lastsynced{
+	margin: 20px 0 100px;
+	text-align: center;
+	padding: 0 20px;
+
+	p{
+		margin: 0;
+		padding: 0;
+	}
+
+	a.btn{
+		background-color: #aaa;
+		color: @white;
+		padding: 5px;
+		margin-left :5px;
+
+		&:hover{
+			background-color: #888;
+		}
+	}
+}

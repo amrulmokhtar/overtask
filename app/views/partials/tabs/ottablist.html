@@ -1,0 +1,23 @@
+<div id="currenttabs">
+
+    <img src="images/icons/tabs-blue.png" class="headericon" alt="" />
+    <h4>Opened Tabs</h4>
+    <a class="btn btnsearch" ng-click="showcurrenttabsearch=!showcurrenttabsearch;hidecurrenttabsearch=!hidecurrenttabsearch" ng-class="{close:hidecurrenttabsearch}" ng-show="(task.tabs|filter:{closed:false}).length!=0">Search</a>
+
+    <div ng-show="task.tabs==0" class="emptydata emptydata-xlg" >
+        <img src="images/emptydata/startthetask.png" alt="" />
+    </div>
+
+    <!-- add when no current tabs are opened, but the task has already been started 
+    <div class="emptydata emptydata-xlg">
+        <img src="images/emptydata/notabs.png" alt="" />
+    </div>
+-->
+
+    <div collapse="!showcurrenttabsearch" class="searchblock">
+    	<input ng-model="searchcurrenttabs" type="text" class="form-control" placeholder="Search tabs . . ." />
+    </div>
+    <ul class="listblock listblock-large">
+        <div ot-tab ng-repeat="tab in task.tabs|filter:searchcurrenttabs|filter:{closed:false} track by $index"></div>
+    </ul>
+</div>

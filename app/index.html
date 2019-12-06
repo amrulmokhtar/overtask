@@ -1,0 +1,168 @@
+<!doctype html >
+<html ng-csp  ng-app="overtaskApp">
+  <head>
+    <meta charset="utf-8">
+    <title>OverTask</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <!-- build:css({.tmp,app}) styles/main.css -->      
+    <!-- endbuild -->
+    
+    <link rel="stylesheet" href="styles/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles/component.css" />
+    <link rel="stylesheet" href="styles/bootstrap-select.min.css" />
+    <link rel="stylesheet" type="text/less" href="styles/overtaskskin.less" />
+    <link rel="stylesheet" type="text/less" href="styles/blocks.less" />
+    <link rel="stylesheet" type="text/less" href="styles/base.less" />
+    <link rel="stylesheet" type="text/less" href="styles/mainblock.less" />
+    <link rel="stylesheet" type="text/less" href="styles/sidebar.less" />
+    <link rel="stylesheet" type="text/less" href="styles/modal.less" />
+    <link rel="stylesheet" href="bower_components/angular/angular-csp.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui/build/angular-ui.css"></script>
+        
+<!-- 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/docs/assets/css/bootstrap.css" /> -->
+<!-- 	<link rel="stylesheet" type="text/css" href="bower_components/angular-strap/vendor/bootstrap-select.css"/> -->
+	        
+</head>
+  <body class="cbp-spmenu-push" ng-class="{'cbp-spmenu-push-toleft':loginpanelopen}">
+    <div ot-header-bar></div>
+    
+    <nav ng-controller="LoginCtrl" ng-class="{'cbp-spmenu-open':loginpanelopen}" class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="rightmenu">
+            
+            <div id="usernotloggedin" ng-hide="user">
+                <div class="signinform">
+                    <h3>Sign In to Overtask!</h3>
+                    <form ng-submit="login()" name="loginForm">
+                        <input auto-fillable-field name='username'  ng-model="username" class="form-control" type="text" placeholder="Your Username" />
+                        <input  ng-model="password" class="form-control" type="password" placeholder="Your Password"/>
+                        <button type="submit" id="submit" value="Submit" class="btn btn-block btn-info">Sign In</button>
+                        <a href='https://overtaskme.appspot.com/user/request_reset_password' class="forgot">Forgot Password?</a>
+                    </form>
+                    <p>Don't have an account? <a href="https://overtaskme.appspot.com/user/register" class="link">Sign Up</a></p>
+                </div>
+
+                <div class="actionbtns">
+                    <a class="btn btn-default" ng-click="openImportExport()">Import / Export Tasks</a>
+                    <p>&copy; Overtask 2014</p>
+                    <p>“Tag” symbol by Joe Mortell, “Gear” symbol by Reed Enger, “Hour Glass” symbol by Laura Beggs, "Calendar" symbol by Shmidt Sergey, <a href="http://thenounproject.com">The Noun Project</a> collection.</p>
+                </div>
+            </div>
+            
+            <div id="userloggedin" ng-show="user">
+                <div class="userdetails" ng-mouseenter="showedit = true" ng-mouseleave="showedit = false">
+                    <a href="https://overtaskme.appspot.com/settings.html"><img analytics-on="click" analytics-event="editaccountimg" class="editprofile" bs-modal="'views/partials/modals/editaccount.html'" src="../images/icons/edit.png" ng-show="showedit" /></a>
+                    <img id='userphoto' class="profile" src="/images/userphotoplaceholder.png" />
+                    <h3>@{{user}}</h3>
+                    <p>{{useremail}}</p>
+                </div>
+
+
+                <div class="actionbtns">
+                    <a href='https://overtaskme.appspot.com/settings'  class="btn btn-default" >Settings</a><!-- ng-click="editAccount()" -->
+                    <a class="btn btn-default" ng-click="openImportExport()">Import / Export Tasks</a>
+                    <a analytics-on="click" analytics-event="signout" class="btn btn-default signout" ng-click="signout()">Sign Out</a>
+                    <p>&copy; Overtask 2014</p>
+                    <p>“Tag” symbol by Joe Mortell, “Gear” symbol by Reed Enger, “Hour Glass” symbol by Laura Beggs, "Calendar" symbol by Shmidt Sergey, <a href="http://thenounproject.com">The Noun Project</a> collection.</p>
+                </div>
+            </div>
+            
+        </nav>
+        
+    <!-- Add your site or application content here -->
+    <div ng-view=""></div>
+    
+     
+         <!-- ShareThis plugin -->
+
+<script src="bower_components/angular/angular.min.js"></script>
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+<!--     <script src="bower_components/jquery/jquery.js"></script> -->
+	<script src="bower_components/cryptojslib/rollups/md5.js"></script>
+	<script src="bower_components/cryptojslib/components/enc-base64-min.js"></script>
+    
+    <script src="bower_components/angular-ui/build/angular-ui.js"></script>
+    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap.js"></script>
+    <!-- endbuild -->
+    
+        <!-- build:js scripts/plugins.js -->
+							
+<!-- 		<script src="scripts/test.js"></script> -->
+		<script src="bower_components/less/dist/less-1.4.2.js"></script>
+<!-- 		<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script> -->
+
+<!-- 		<script src="bower_components/angular-strap/dist/angular-strap.min.js"></script>	 -->
+<!-- 		<script src="scripts/bootstrap-datepicker.js"></script> -->
+<!-- 		<script src="bower_components/angular-strap/vendor/bootstrap-select.js"></script>				 -->
+						    <!-- endbuild -->
+
+        <!-- build:js scripts/modules.js -->
+        <script src="bower_components/angularitics/dist/angulartics.min.js"></script>
+        <script src="bower_components/angularitics/dist/angulartics-google-analytics.min.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/eventEmitter/EventEmitter.js"></script>
+        <script src="bower_components/eventie/eventie.js"></script>
+        
+        <script src="bower_components/doc-ready/doc-ready.js"></script>
+        <script src="bower_components/get-style-property/get-style-property.js"></script>
+        <script src="bower_components/get-size/get-size.js"></script>
+<!--         <script src="bower_components/jquery-bridget/jquery.bridget.js"></script> -->
+        <script src="bower_components/matches-selector/matches-selector.js"></script>
+        <script src="bower_components/outlayer/item.js"></script>
+        <script src="bower_components/outlayer/outlayer.js"></script>
+        
+        <script src="bower_components/imagesloaded/imagesloaded.js"></script>
+        <script src="bower_components/masonry/masonry.js"></script>
+        
+        <script src="scripts/app.js"></script>
+    	<script src="scripts/controllers/main.js"></script>
+    	<script src="scripts/controllers/task.js"></script>
+        <script src="scripts/controllers/chromeappscontroller.js"></script>
+        <script src="scripts/controllers/tutorialcontroller.js"></script>
+        <script src="scripts/controllers/logincontroller.js"></script>
+        
+        
+        <script src="bower_components/angular-masonry/angular-masonry.js"></script>
+<!--         <script src="bower_components/angular-masonry-directive/src/angular-masonry-directive.js"></script> -->
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+<!--         <script src="bower_components/angular-cookies/angular-cookies.js"></script> -->
+<!--         <script src="bower_components/pouchdb-nightly.min/pouchdb-nightly.js"></script>-->
+        <script src="bower_components/pouchdb/dist/pouchdb.min.js"></script>
+<!--    <script src="http://download.pouchdb.com/pouchdb-nightly.js"></script>
+<!--         <script src="scripts/services/googleLogin.js"></script> -->
+        <script src="scripts/services/pouch.js"></script>
+         <script src="scripts/services/filereader.js"></script>
+        <script src="scripts/services/suggestionmanager.js"></script>
+        <script src="scripts/services/tabmanager.js"></script>
+        <script src="scripts/services/taskmanager.js"></script>
+        <script src="scripts/services/tasktabmanager.js"></script>
+        <script src="scripts/services/loginmanager.js"></script>
+        <script src="scripts/services/notificationmanager.js"></script>
+        <script src="scripts/services/chromeBackgroundPage.js"></script>
+       
+        
+        <script src="scripts/directives/taskcard.js"></script>
+        <script src="scripts/directives/otlinks.js"></script>
+        <script src="scripts/directives/tasklist.js"></script>
+        <script src="scripts/directives/taskadder.js"></script>
+        <script src="scripts/directives/otsharebox.js"></script>
+        <script src="scripts/directives/suggestionlist.js"></script>
+        <script src="scripts/directives/ottab.js"></script>
+        <script src="scripts/directives/ottablist.js"></script>
+        <script src="scripts/directives/otclosedtablist.js"></script>
+        <script src="scripts/directives/taskdetails.js"></script>
+        <script src="scripts/directives/otheaderbar.js"></script>
+        <script src="scripts/directives/ottaskfilter.js"></script>
+        
+        <script src="scripts/services/google0auth.js"></script>
+        <script src="scripts/services/angularOauth.js"></script>
+        <script src="scripts/controllers/launchTab.js"></script>
+        <!-- endbuild -->
+
+
+        
+        
+</body>
+</html>

@@ -1,0 +1,21 @@
+<div id="suggested">
+    <img src="images/icons/suggestions.png" class="headericon" alt="" />
+    <h4>Suggested Sites</h4>
+    <!--
+    <a class="btn btnsearch btntips" ng-click="showsuggestiontips=!showsuggestiontips;hidetips=!hidetips" ng-class="{close:hidetips}"><img src="../images/icons/tips.png" /></a>
+
+    <div collapse="!showsuggestiontips" class="notice">
+        <a ng-click='openEdit(task)'>Add a category to improve your suggestions.</a>
+    </div>-->
+
+    <ul class="listblock">
+        <li                                                                                     
+            ng-repeat="suggestion in suggestions | limitTo:7  track by $index ">
+            <a ng-click="addTab(task,suggestion.url,'research',{title:suggestion.title})">
+                <img src="http://g.etfv.co/{{suggestion.url}}" class="favicon"
+                alt="" />
+                <p>{{suggestion.title}}</p>
+        </a>
+        </li>
+    </ul>
+</div>

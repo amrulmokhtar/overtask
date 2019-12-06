@@ -1,0 +1,164 @@
+<!--  <div id="controls">
+    <h3 class="pull-left"
+        style="font-weight: normal; margin-right: 10px; font-size: 12pt;">Filter
+        tasks:</h3>
+    <select ng-model="filterbox"
+        ng-options="value.filter as value.name for (key, value) in types"
+        data-style="btn-info" bs-select></select> <input
+        placeholder="Search Task..." type="text"
+        ng-model="tasksearch"></input> <a
+        class="btn btn-danger pull-right" data-toggle="collapse"
+        data-target="#trashedtask" data-parent="#rightsidebar"><span
+        class="badge badge-info">{{(tasks|filter:{trashed:true}|filter:notdeleting).length}}</span>
+        Trash</a> <a class="btn btn-primary pull-right"
+        data-toggle="collapse" data-target="#completedtask"
+        data-parent="#rightsidebar"><span
+        class="badge badge-warning">{{(tasks|filter:{trashed:false,
+            status: '!inprogress'}|filter:notdeleting).length}}</span>
+        Completed Tasks</a>
+</div>
+
+<div id="completedtask" class="collapse">
+    <h3>Completed Tasks</h3>
+    <div id="task"
+        ng-repeat="task in tasks | filter:{trashed:false, status: '!inprogress', name:tasksearch}">
+        <div ot-task-card></div>
+    </div>
+</div>
+
+
+<div id="trashedtask" class="collapse">
+    <h3>Trashed Tasks</h3>
+    <div ot-task-card ng-repeat="task in tasks | filter:{trashed:true, name:tasksearch}|filter:notdeleting">
+    </div>
+</div>
+<div id="currenttask">
+
+    <h1 ng-hide="tasks.length">No tasks yet.</h1>
+    <div ng-show="filterbox">
+        <div ot-task-card
+            ng-repeat="task in tasks | filter: filterbox | orderBy:'-startdate' |filter:{name:tasksearch}"
+            >
+            
+        </div>
+    </div>
+
+    <div ng-show="!filterbox">
+        <div ot-task-card
+            ng-repeat="task in tasks | filter: {trashed:false, status:'inprogress'} | orderBy:'-startdate' |filter:{name:tasksearch}">
+   
+        </div>
+    </div>
+</div> -->
+<div id="main">
+    <div ng-model="activetasktab" data-fade="1">
+        <div ng-show="list.mode.home"  id="home">
+
+            <div ot-task-adder>
+            </div>
+
+
+            <!--
+            <div class="searchfilter">  
+                <input ng-model="tasksearch" class="form-control search" type="text"
+                    placeholder="Search tasks..." /> 
+                    
+                <select ng-model="selfilter" ng-options="filter.name group by filter.group for filter in filtertypes" class="selectpicker show-tick">
+                </select> 
+                <a class="btn btn-inverse btn-delete btncollapse pull-right" 
+                    ng-click="list.mode.trash=true; list.mode.home=false;" bs-tooltip="'Trashed Tasks'" data-placement="bottom">
+                
+                <span
+                    class="badge">{{(tasks|filter:{trashed:true}|filter:notdeleting).length}}</span><img
+                    src="images/icons/trash.png" alt="" /></a> 
+                
+                <a
+                    class="btn btn-inverse btn-delete btncollapse" 
+                    ng-click="list.mode.complete=true; list.mode.home=false; $('#')" bs-tooltip="'Completed Tasks'" data-placement="bottom"><span
+                    class="badge">{{(tasks|filter:{trashed:false,
+                        status:
+                        '!inprogress'}|filter:notdeleting).length}}</span><img
+                    src="images/icons/done.png" alt="" /></a>
+            </div>
+            <div class="clear" style="margin-bottom: 20px"></div>-->
+
+            <div class="emtydata emptydata-lg" ng-hide="(tasks|filter:filterset.filter|filter:notdeleting).length > 0">
+                No tasks here!
+            </div>
+            <div class="emptydata emptydata-lg" ng-hide="tasks.length > 0">
+                <!--todo fix this for diferent filters -->
+                <img src="images/emptydata/createatask.png" alt="" />
+            </div>
+
+            <div masonry='{ "transitionDuration" : "0.4s" , "itemSelector" : ".taskblock"}' id="taskcontainer" column-width="10"
+                >
+                <!--         <div ng-show="!filterbox"> -->
+                <div masonry-brick ot-task-card class="taskblock" 
+                    ng-repeat="task in tasks | orderBy:'-startdate' |filter:{name:tasksearch||''} | filter:filterset.filter |filter:notdeleting | orderBy:orderby track by $index">
+
+                </div>
+            </div>
+        </div>
+        
+<!--         <div ng-show="list.mode.complete" id="donetasks"> -->
+<!--             <div class="searchfilter"> -->
+<!--                  Search box -->
+<!--                  <input class="form-control search" type="text" placeholder="Search tasks..." /> -->
+                 
+<!--                  <a class="btn btn-delete btncollapse pull-right" href="#trashedtasks" data-toggle="tab" bs-tooltip="'Trashed Tasks'" data-placement="bottom"><span class="badge">2</span><img src="images/icons/trash.png"/></a> -->
+<!--                  <a class="btn btn-info btn-lg4 btncollapse"  ng-click="list.mode.home=true; list.mode.complete=false" data-toggle="tab"><img src="images/icons/back.png" /></a> -->
+<!--              </div> -->
+<!--              <div class="clear" style="margin-bottom: 20px"></div> -->
+<!--             <div class="tasktabheader"> -->
+<!--                 <h3>{{(tasks|filter:{trashed:false, -->
+<!--                         status: -->
+<!--                         '!inprogress'}|filter:notdeleting).length}} Completed Task(s)</h3> -->
+<!--             </div> -->
+
+<!--             <div class="clear"></div> -->
+
+<!--             <div ng-hide="(tasks|filter:{trashed:false, -->
+<!--                         status: -->
+<!--                         '!inprogress'}|filter:notdeleting).length > 0" class="emptydata"> -->
+<!--                 <img src="images/emptydata/nocompleted.png" alt="" /> -->
+<!--             </div> -->
+
+<!--              <div masonry id="completedtaskcontainer" column-width="10" -->
+<!--                 item-selector=".taskblock"> -->
+<!--                         <div ng-show="!filterbox"> -->
+<!--                 <div masonry-brick ot-task-card class="taskblock" -->
+<!--                     ng-repeat="task in tasks | filter: {trashed:false, status:'!inprogress'} | orderBy:'-startdate' |filter:{name:tasksearch}"> -->
+
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+
+<!--         <div ng-show="list.mode.trash" id="trashedtasks"> -->
+
+<!--             <div class="searchfilter"> -->
+<!--                  Search box -->
+<!--                  <input class="form-control search" type="text" placeholder="Search tasks..." /> -->
+                 
+<!--                  <a class="btn btn-info btn-lg4 pull-right btncollapse" ng-click="list.mode.home=true; list.mode.trash=false" data-toggle="tab"><img src="images/icons/back.png" /></a> -->
+<!--                  <a class="btn btn-delete btncollapse btncollapse" href="#donetasks" data-toggle="tab" bs-tooltip="'Completed Tasks'" data-placement="bottom"><span class="badge">2</span><img src="images/icons/done.png" /></a> -->
+<!--              </div> -->
+<!--              <div class="clear" style="margin-bottom: 20px"></div> -->
+<!--             <div class="tasktabheader"> -->
+<!--                 <h3>{{(tasks|filter:{trashed:true}|filter:notdeleting).length}} Trashed Task(s)</h3> -->
+<!--             </div> -->
+<!--             <div class="clear"></div> -->
+
+<!--             <div ng-show="(tasks|filter:{trashed:true}|filter:notdeleting).length<1" class="emptydata"> -->
+<!--                 <img src="images/emptydata/notrashed.png" alt="" /> -->
+<!--             </div> -->
+
+<!--              <div masonry id="trashcontainer" column-width="10" -->
+<!--                 item-selector=".trashtaskblock"> -->
+<!--                         <div ng-show="!filterbox"> -->
+<!--                 <div masonry-brick ot-task-card class="taskblock trashtaskblock" -->
+<!--                     ng-repeat="task in tasks | filter: {trashed:true} | orderBy:'-startdate' |filter:{name:tasksearch} |filter:notdeleting"> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="modal-header">
+	<h3>Complete <span class="highlight">{{task.name}}</span>?</h3>
+</div>
+
+<div class="modal-body">
+	<p>Marks the task as complete. You can always choose to re-do this task later.</p>
+	
+</div>
+
+<div class="modal-footer">
+	<button type="button" class="btn" ng-click="hide()">Cancel</button>
+	<button class="btn btn-primary" ng-click="finishTask(task); hide();">Complete Task</button>
+</div>

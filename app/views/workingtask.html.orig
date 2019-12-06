@@ -1,0 +1,372 @@
+<div id="tabpage">
+		
+<!-- 		<a class="btn" ng-click="steptabpage()">Tabpage Walkthrough</a> -->
+		
+		<div id="steparrowleft" class="tabpage">
+				<h3>The Tab Page</h3>
+				<p>This is your tab page. Here are the details of this task. Clicking the yellow
+				back button with closed this task session and bring you back to the task page.</p>
+				<a class="btn btn-info skip" ng-click="skipTutorial()">Skip Tutorial</a>
+				<a class="btn btn-primary pull-right" ng-click="nextStep()">Next</a>
+		</div>
+		
+		<div id="steparrowbottom" class="tabcategories" style="margin-left: -200px;">
+				<h3>Categorize Tabs</h3>
+				<p>In OverTask, your tabs are categorized between three categories - Do, Research, and Communicate. </p>
+				<a class="btn btn-info skip" ng-click="skipTutorial()">Skip Tutorial</a>
+				<a class="btn btn-primary pull-right" ng-click="nextStep()">Next</a>
+		</div>
+		
+		<div id="steparrowtop" class="dotab">
+				<h3>Do</h3>
+				<p>Do is for the tabs that are needed to complete a task. For example, Cloud9 for programming or Google Docs for writing.</p>
+				<a class="btn btn-info skip" ng-click="skipTutorial()">Skip Tutorial</a>
+				<a class="btn btn-primary pull-right" ng-click="nextStep()">Next</a>
+		</div>
+		
+		<div id="steparrowtop" class="researchtab">
+				<h3>Research</h3>
+				<p>Research is for the tabs you use to look for information. This can contain research sites, web articles, and much more.</p>
+				<a class="btn btn-info skip" ng-click="skipTutorial()">Skip Tutorial</a>
+				<a class="btn btn-primary pull-right" ng-click="nextStep()">Next</a>
+		</div>
+		
+		<div id="steparrowtop" class="communicatetab">
+				<h3>Communicate</h3>
+				<p>Communicate is for the tabs used when you communicate with others. For example, social media and email sites.</p>
+				<a class="btn btn-info skip" ng-click="skipTutorial()">Skip Tutorial</a>
+				<a class="btn btn-primary pull-right" ng-click="nextStep()">Next</a>
+		</div>
+		
+		<div id="step" class="viewtab">
+				<h3>View, Comment, & Close</h3>
+				<p>To view a tab, click on it and press View. You can also leave comments or close the tab.
+				Closed tabs can be viewed by clicking the "View Recently Closed Tabs" button.</p>
+				<a class="btn btn-info skip" ng-click="skipTutorial()">Skip Tutorial</a>
+				<a class="btn btn-primary pull-right" ng-click="nextStep()">Next</a>
+		</div>
+		
+		<div id="steparrowright" class="completetask">
+				<h3>Complete Task</h3>
+				<p>Once you've completed your task, click the green complete button. You can also trash the task by clicking
+				the red trash button.</p>
+				<a class="btn btn-info skip" ng-click="skipTutorial()">Skip Tutorial</a>
+				<a class="btn btn-primary pull-right" ng-click="nextStep()">Next</a>
+		</div>
+		
+		<div id="steparrowright" class="synctask">
+				<h3>Sync Tasks</h3>
+				<p> Want to access your tasks and tabs with another device? Sign in to OverTask to sync
+				your tasks and tabs across multiple Chrome browsers.</p>
+				<a class="btn btn-primary pull-right" ng-click="nextStep()">Finish tutorial</a>
+		</div>
+		
+		
+		<div id="tappageheader">
+				
+				<div id="back">
+						<a class="btn btn-warning " ng-click="suspendTask()"><img src="../images/back.png" /></a>
+				</div>
+				<div id="details">
+						<h2>{{task.name}}</h2>
+						<p>{{task.category}}  <span ng-show="task.enddate">|  Due {{task.enddate | date:"shortDate"}}  </span>| <span>{{priority[task.priority-1]}} Priority</span></p>
+				</div>
+				<ul id="nav">
+						<li><a class="btn btn-primary" bs-modal="'views/partials/complete.html'"><img src="../images/done.png" /></a></li>
+						<li><a class="btn btn-info" bs-modal="'views/partials/edit.html'"><img src="../images/edit.png" /></a></li>
+						<li><a class="btn btn-danger" bs-modal="'views/partials/delete.html'"><img src="../images/trash.png" /></a></li>
+				</ul>
+				
+		</div>
+		<div class="clearfix"></div>
+				
+		<div data-fade="1" ng-model="tabs.activeTab" bs-tabs>
+				<div data-title="Do">
+						<!--{{(doTabs|filter:{closed:false}).length}}-->
+						<div id="list" data-drop="true" jqyoui-droppable="{multiple:true,onDrop:'doDropCallback'}" ng-model='doTabs'>
+						<!--<h1 ng-hide='doTabs'>The web-apps that you are using to complete your task will be tracked here</h1>-->
+								<div class="alert fade" bs-alert>The web-apps that you are using to complete your task will be tracked here</div>
+								<ul id="opentabs">
+										<li ng-repeat="tab in doTabs|filter:{closed:false}" ng-model="doTabs">
+												<a data-placement="bottom" data-unique="1" bs-popover="'views/partials/viewtab.html'" >
+														<img ng-src="{{tabimages[tab.url]}}" src="images/dummytab.png" alt="{{tab.title}}"/>
+														
+												</a>
+
+												<div style="float:right; position:relative;bottom: 50px; right: 10px;">
+															<button class="btn btn-primary" ng-click="switchTo(tab)">
+															View
+															</button>
+
+												</div>
+
+												<p>{{tab.title}}</p>
+												
+
+										</li>
+								</ul>
+						</div>
+		
+						<div id="bottombar">
+								<ul id="suggested">
+										<h3>Suggested Sites</h3>
+										<li ng-model='doSuggestions' ng-repeat="tab in suggestions|filter:{category:'Do',keywords:task.category.toLowerCase()}|limitTo:10"><a ng-click="addDo(tab.url)"><img src="http://g.etfv.co/{{tab.url}}" />{{tab.title}}</a></li>
+										<li ng-repeat="tab in suggestions|filter:{category:'Do',keywords:'!'+task.category.toLowerCase()}|limitTo:10-doSuggestions.length"><a ng-click="addDo(tab.url)"><img src="http://g.etfv.co/{{tab.url}}" />{{tab.title}}</a></li>
+								</ul>
+						</div>
+		
+  		
+				</div>
+				
+				<div data-title="Research" class="categorycontent">
+				
+						<div id="list" data-drop="true" jqyoui-droppable="{multiple:true,onDrop:'researchDropCallback'}" ng-model='researchTabs'>
+						
+						<!--<h1 ng-hide='researchTabs'>The sites where you find information for your task will be tracked here</h1>-->
+								<div class="alert fade" bs-alert>The sites where you find information for your task will be tracked here</div>
+								<ul id="opentabs">
+										<li ng-repeat="tab in researchTabs | filter: {closed:false}" ng-model='researchTabs' >
+												<a data-placement="bottom" data-unique="1" bs-popover="'views/partials/viewtab.html'">
+														<img ng-src="{{tabimages[tab.url]}}" src="images/dummytab.png" alt="{{tab.title}}"/>
+												</a>
+												<div style="float:right; position:relative;bottom: 50px; right: 10px;">
+															<button class="btn btn-primary" ng-click="switchTo(tab)">
+															View
+															</button>
+												</div>
+												<p>{{tab.title}}</p>
+										</li>
+								</ul>
+						
+								<a class="btn btn-primary" data-toggle="collapse" data-target="#recentlyclosed">View Recently Closed Tabs</a>
+								<div id="recentlyclosed" class="collapse">
+										
+										<ul id="closedtabs">
+												<!--
+												<li ng-repeat="tab in task.tabs | filter:{closed:true,category:'research'}">
+														<a data-placement="bottom" data-unique="1" bs-popover="'views/partials/reopentab.html'">
+																<img ng-src="{{tab.image}}" src="images/dummytab.png" alt="{{tab.title}}"/>
+														</a>
+														<p>{{tab.title}}</p>
+												</li>-->
+												<li ng-repeat="tab in task.tabs | filter:{closed:true,category:'research'}">
+														<p>{{tab.title}}</p>
+														<div class="closedbtns">
+																<a class="btn btn-primary" ng-click="reopen(tab)">Re-Open</a>
+																<a class="btn btn-info" bs-modal="'views/partials/comments.html'">Comment</a>
+																<a class="btn btn-danger" ng-click="cancelTab(tab)">Close</a>
+														</div>
+												</li>
+										</ul>
+								</div>
+						</div>
+				
+						<div id="bottombar">
+								<ul id="suggested">
+									<h3>Suggested Sites</h3>
+									<li ng-repeat="tab in suggestions|filter:{category:'research',keywords:task.category}" ng-model="researchSuggestions"><a ng-click="addResearch(tab.url)"><img src="http://g.etfv.co/{{tab.url}}" />{{tab.title}}</a></li>
+									<li ng-repeat="tab in suggestions|filter:{category:'research',keywords:'!'+task.category}|limitTo:10-researchSuggestions.length" ng-model="researchSuggestions"><a ng-click="addResearch(tab.url)"><img src="http://g.etfv.co/{{tab.url}}" />{{tab.title}}</a></li>
+								</ul>
+						</div>
+				</div>
+				
+				
+				<div data-title="Communicate">
+						<div id="list" data-drop="true" jqyoui-droppable="{multiple:true,onDrop:'communicateDropCallback'}" ng-model='communicateTabs'>
+		  		<!--<h1 ng-hide='communicateTabs'>The sites where you communicate with other people involved this task, as well as the people involved, will be tracked here</h1>-->
+								<div class="alert fade" bs-alert>The sites where you communicate with other people involved in this task, as well as the people involved, will be tracked here</div>
+								<ul id="opentabs">
+										<li ng-repeat="tab in communicateTabs | filter:{closed:false}" ng-model="communicateTabs">
+												<a data-placement="bottom" data-unique="1" bs-popover="'views/partials/viewtab.html'">
+														<img ng-src="{{tabimages[tab.url]}}" src="images/dummytab.png" alt="{{tab.title}}"/>
+												</a>										
+												
+												<div style="float:right; position:relative;bottom: 50px; right: 10px;">
+															<button class="btn btn-primary" ng-click="switchTo(tab)">
+															View
+															</button>
+												</div>
+												<p>{{tab.title}}</p>
+										</li>
+								</ul>
+						</div>
+				
+						<div id="bottombar">
+								<ul id="suggested" class="comm">
+									<h3>Suggested Sites</h3>
+									<li ng-repeat="tab in suggestions|filter:{category:'communicate',keywords:task.category}" ng-model="researchSuggestions"><a ng-click="addCommunicate(tab.url)"><img src="http://g.etfv.co/{{tab.url}}" />{{tab.title}}</a></li>
+									<li ng-repeat="tab in suggestions|filter:{category:'communicate',keywords:'!'+task.category}|limitTo:10-researchSuggestions.length" ng-model="researchSuggestions"><a ng-click="addCommunicate(tab.url)"><img src="http://g.etfv.co/{{tab.url}}" />{{tab.title}}</a></li>
+								</ul>
+								<div id="commcomingsoon" class="comm">
+										<h3>Coming Soon!</h3>
+										<p>Soon, you'll be able to <b>share tasks and tabs</b> with your friends. Stay tuned for this awesome feature!</p>
+								</div>
+								<!--
+								<div id="comm">
+									<input type="text" placeholder="Enter contacts' email" ng-model="peoplebox"/>
+									<button class="btn btn-inverse" ng-click="task.shared.push(peoplebox)">Add</button>
+									<ul>
+										<!--
+										<li class="owner">{{task.owner.charAt(0).toUpperCase()}}</li>
+										<li ng-repeat="person in task.shared" ><a ng-click="setContact(person)">{{person[0].toUpperCase()}}</a></li>
+										{{fullcontact}}--
+										<li class="owner">Owner's Name</li>
+										<li>contact@contact.com</li>
+										<li>contactwithlongemail@contact.com</li>
+										<li>contact@contact.com</li>
+										<li>anonymous@contact.com</li>
+										<li>omg@contact.com</li>
+									</ul>
+								</div>-->
+
+				</div>
+		</div>
+		
+    
+  </tabset>
+		
+		
+		
+		
+</div>		
+		
+
+ <!-- 	
+  	<div id="tasktype">
+		<div class="taskheader">
+				<h3>Do</h3>
+<!--   		<input type="text" class="partial" placeholder="Enter URL..." ng-model="url"/> 
+				<button class="btn btn-primary go" ng-click="newTab('do')">New Tab</button>
+		</div>
+  		<!--
+		<div class="tab">
+				<a href="#" data-toggle="tooltip" title="first tooltip">
+						<img src="../images/tabbg3.png" />
+				</a>
+				<div class="hoverdetails">
+						<h3>Tab Name</h3>
+						<a href="#" class="btn">OPEN</a>
+						<a href="#" class="btn pull-right">D</a>
+						<a href="#" class="btn pull-right">C</a>
+						
+				</div>
+		</div>
+		
+		<div class="tab">
+				<img src="../images/tabbg3.png" />
+		</div>
+		<div class="tab">
+				<img src="../images/tabbg3.png" />
+		</div>
+		<div class="tab">
+				<img src="../images/tabbg3.png" />
+		</div>
+		
+  		<div id="list" data-drop="true" jqyoui-droppable="{multiple:true,onDrop:'doDropCallback'}" ng-model='doTabs'>
+
+	  		<ul id="open">
+	  			<li ng-repeat="tab in doTabs|filter:{closed:false}" ng-model='doTabs' data-jqyoui-options="{revert: 'invalid', zIndex: 100}" data-drag="true" jqyoui-draggable="{animate:true,index: {{$index}}}">
+	  				<a ng-click="switchTo(tab)">
+  						<img src="http://g.etfv.co/{{tab.url}}" class="favicon" />
+  						<img ng-src='{{tab.image}}' width='150'/>
+		  					{{tab.title}}
+	  				</a>
+	  				<!-- FIXME Add popup for confirmation on DO tab delete, to prevent work loss/keep user on track
+	  					<span class="cross pull-right fui-cross" ng-click="cancelTab(tab)"></span>
+	  			</li>
+	  		</ul>
+	  	</div>
+  		<ul id="suggested">
+  			<h3>Suggested Sites</h3>
+  			<li ng-model='doSuggestions' ng-repeat="tab in suggestions|filter:{category:'Do',keywords:task.category.toLowerCase()}|limitTo:10"><a ng-click="addDo(tab.url)"><img src="http://g.etfv.co/{{tab.url}}" />{{tab.title}}</a></li>
+  			<li ng-repeat="tab in suggestions|filter:{category:'Do',keywords:'!'+task.category.toLowerCase()}|limitTo:10-doSuggestions.length"><a ng-click="addDo(tab.url)"><img src="http://g.etfv.co/{{tab.url}}" />{{tab.title}}</a></li>
+  		</ul>
+  	</div>
+  	
+  	<div id="tasktype">
+	  		<div class="taskheader">
+				<h3>Research</h3>
+<!--   		<input type="text" class="partial" placeholder="Enter URL..." ng-model="url"/> 
+				<button class="btn btn-primary go" ng-click="newTab('do')">New Tab</button>
+		    </div>
+	  		<div id="list" id="list" data-drop="true" jqyoui-droppable="{multiple:true,onDrop:'researchDropCallback'}" ng-model='researchTabs'>
+	  			<h4>Currently Open</h4>
+		  		<ul id="open">
+		  			<li ng-repeat="tab in researchTabs  | filter:{closed:false}" 
+		  			ng-model='researchTabs' data-jqyoui-options="{revert: 'invalid'}" ng-show='tab'
+		  			data-drag="true" jqyoui-draggable="{index: {{$index}},animate:true}">
+		  				<a ng-click="switchTo(tab)">
+		  					<img src="http://g.etfv.co/{{tab.url}}" class="favicon" />
+		  					<img ng-src='{{tab.image}}' width='150'/>
+		  					{{tab.title}}
+		  				</a>
+		  				<ul>
+		  					<li class="form" ng-repeat="comment in tab.comments">
+		  					{{comment}}
+		  					<form id="comments" ng-submit="addcomment(commententer,tab)">
+		  						<input type="text"  class="input-block-level" placeholder="Enter Comment..." ng-model="commententer" ng-hide="comment"/>
+		  						</form>
+		  					</li>
+	  					</ul>
+		  				<span class="cross pull-right fui-cross" ng-click="removeTab(tab)"></span>
+		  				<span class="comment pull-right fui-chat" ng-click="tab.comments.push('')"></span>
+		  			</li>
+		  		</ul>
+		  		<h4>Recently Closed</h4>
+		  		<ul id="closed">
+		  			<li ng-repeat="tab in task.tabs | filter:{closed:true,category:'research'}">
+		  				<a ng-click="reopen(tab)">
+		  					<img src="http://g.etfv.co/{{tab.url}}" class="favicon" />
+		  					{{tab.title}}
+		  				</a>
+	  					<ul>
+		  					<li class="form" ng-repeat="comment in tab.comments">
+		  					{{comment}}
+		  					<form id="comments" ng-submit="addcomment(commententer,tab)">
+		  						<input type="text"  class="input-block-level" placeholder="Enter Comment..." ng-model="commententer" ng-hide="comment"/>
+		  						</form>
+		  					</li>
+	  					</ul>
+	  					<!-- FIXME Add popup for confirmation on history tab delete, informing user that the task won't be tracked anymore
+	  					<span class="cross pull-right fui-cross" ng-click="cancelTab(tab)"></span>
+	  					<span class="comment pull-right fui-chat" ng-click="tab.comments.push('')"></span>
+		  				
+		  			</li>
+		  			
+		  		</ul>
+	  		</div>
+	  		<ul id="suggested">
+	  			<h3>Suggested Sites</h3>
+	  			<li ng-repeat="tab in suggestions|filter:{category:'research',keywords:task.category}" ng-model="researchSuggestions"><a ng-click="addResearch(tab.url)"><img src="http://g.etfv.co/{{tab.url}}" />{{tab.title}}</a></li>
+	  			<li ng-repeat="tab in suggestions|filter:{category:'research',keywords:'!'+task.category}|limitTo:10-researchSuggestions.length" ng-model="researchSuggestions"><a ng-click="addResearch(tab.url)"><img src="http://g.etfv.co/{{tab.url}}" />{{tab.title}}</a></li>
+	  		</ul>
+	  	</div>
+	  	
+	  	<div id="tasktype">
+	  		<div class="taskheader">
+				<h3>Communicate</h3>
+<!--   		<input type="text" class="partial" placeholder="Enter URL..." ng-model="url"/> 
+				<button class="btn btn-primary go" ng-click="newTab('do')">New Tab</button>
+		</div>
+	  		<div id="list" data-drop="true" jqyoui-droppable="{multiple:true,onDrop:'communicateDropCallback'}" ng-model='communicateTabs'>
+		  		<ul id="open">
+		  			<li ng-repeat="tab in communicateTabs | filter:{closed:false}" ng-model='communicateTabs' data-jqyoui-options="{revert: 'invalid'}" ng-show='tab'
+		  			data-drag="true" jqyoui-draggable="{index: {{$index}},animate:true}">
+		  				<a ng-click="switchTo(tab)">
+		  					<img src="http://g.etfv.co/{{tab.url}}" class="favicon" />
+		  					{{tab.title}}
+		  				</a>
+		  				<span class="cross pull-right fui-cross" ng-click="cancelTab(tab)"></span>
+		  			</li>
+		  		</ul>
+	  		</div>
+	  		<div id="comm">
+	  			<input type="text" class="partial" placeholder="Add People" ng-model="peoplebox"/>
+	  			<button class="btn btn-inverse sub go" ng-click="task.shared.push(peoplebox)">Add</button>
+	  			<ul class="people" style="padding: 0px 10px; margin: 0px 0px -10px 0px; ">
+	  				<li class="owner">{{task.owner.charAt(0).toUpperCase()}}</li>
+	  				<li ng-repeat="person in task.shared" ><a ng-click="setContact(person)">{{person[0].toUpperCase()}}</a></li>
+	  				{{fullcontact}}
+	  			</ul>
+	  		</div>
+	  	</div>-->

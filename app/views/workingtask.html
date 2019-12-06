@@ -1,0 +1,19 @@
+<div id="sidebar">
+    <div ot-task-details> </div>
+    
+    <div ng-show='user' class="lastsynced" tooltip="Overtask syncs your data automatically every 30 minutes" tooltip-placement="bottom">
+		{{syncstatus[0]}} {{syncstatus[1]|date:'shortTime'}}. <a class="btn" ng-click="sync(tasks)">Sync Now</a>
+	</div>
+    <div ot-links > </div>  
+</div>
+
+<div id="main">
+
+<div ot-tab-list> </div> 
+
+<div id="rightbar">
+    <div ot-suggestion-list></div>
+    <div ot-closed-tab-list></div>
+</div>
+
+</div>

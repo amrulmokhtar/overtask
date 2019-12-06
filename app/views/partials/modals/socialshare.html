@@ -1,0 +1,25 @@
+<div id="socialShareModal">
+     <div class="modal-content">
+         <div class="modal-header">
+             <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+             <img class="modalicon" src="../images/icons/share-blue.png" />
+             <h4 class="modal-title" id="socialShareModalLabel">Tell your friends about Overtask!</h4>
+             <div class="clear"></div>
+         </div>
+         <div class="modal-body">
+
+            <textarea class="form-control" placeholder="Enter message here...">I'm doing {{task.name}} with Overtask! http://overtask.me</textarea>
+
+            <span class='st_sharethis_large' displayText='ShareThis'></span>
+            <span class='st_facebook_large' displayText='Facebook'></span>
+            <span class='st_twitter_large' displayText='Tweet'></span>
+            <span class='st_googleplus_large' displayText='Google +'></span>
+            <span class='st_email_large' displayText='Email'></span>
+            
+         </div>
+         <div class="modal-footer">
+             <a class="btn btn-default" ng-click="cancel()">Cancel</a>
+             <a class="btn btn-success" ng-click="share()">Share</a>
+         </div>
+     </div>
+ </div>
